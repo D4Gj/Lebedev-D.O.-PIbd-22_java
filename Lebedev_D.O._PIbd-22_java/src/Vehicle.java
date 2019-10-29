@@ -17,7 +17,7 @@ public abstract class Vehicle implements ITractor {
  	}
 
  	protected void setMaxSpeed(int maxSpeed) {
- 		MaxSpeed = maxSpeed;
+ 		this.MaxSpeed = maxSpeed;
  	}
 
  	public float getWeight() {
@@ -25,7 +25,7 @@ public abstract class Vehicle implements ITractor {
  	}
 
  	protected void setWeight(float weight) {
- 		Weight = weight;
+ 		this.Weight = weight;
  	}
      
  	public int get_pictureWidth() {
@@ -76,8 +76,8 @@ public abstract class Vehicle implements ITractor {
 		MainColor = value;
 	}
      
-     public abstract void MoveTransport(Direction direction);
-     public abstract void paint(Graphics g);
+     public abstract void Move(Direction direction);
+     public abstract void DrawCar(Graphics g);
 
 	public void repaint() {
 		// TODO Auto-generated method stub

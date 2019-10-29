@@ -1,0 +1,59 @@
+import java.awt.Color;
+import java.awt.Graphics;
+
+public class NormWheel implements IWheel {
+
+	@Override
+	public void DrawCar(AmountWheels wheel, Graphics g, Color color, int _startPosX, int _startPosY) {
+		g.setColor(color);
+		switch (wheel) {
+		case four:
+			g.fillOval(_startPosX + 16, _startPosY + 51, 8, 8);
+			g.fillOval(_startPosX + 71, _startPosY + 51, 8, 8);
+			g.fillOval(_startPosX + 61, _startPosY + 51, 8, 8);
+			g.fillOval(_startPosX + 26, _startPosY + 51, 8, 8);
+			break;
+		case five:
+			g.fillOval(_startPosX + 16, _startPosY + 51, 8, 8);
+			g.fillOval(_startPosX + 71, _startPosY + 51, 8, 8);
+			g.fillOval(_startPosX + 61, _startPosY + 51, 8, 8);
+			g.fillOval(_startPosX + 26, _startPosY + 51, 8, 8);
+			g.fillOval(_startPosX + 36, _startPosY + 51, 8, 8);
+			break;
+		case six:
+			g.fillOval(_startPosX + 16, _startPosY + 51, 8, 8);
+			g.fillOval(_startPosX + 71, _startPosY + 51, 8, 8);
+			g.fillOval(_startPosX + 61, _startPosY + 51, 8, 8);
+			g.fillOval(_startPosX + 26, _startPosY + 51, 8, 8);
+			g.fillOval(_startPosX + 36, _startPosY + 51, 8, 8);
+			g.fillOval(_startPosX + 46, _startPosY + 51, 8, 8);
+			break;
+		}
+
+		switch (wheel) {
+		case four:
+			g.drawOval(_startPosX + 15, _startPosY + 50, 10, 10);
+			g.drawOval(_startPosX + 70, _startPosY + 50, 10, 10);
+			g.drawOval(_startPosX + 60, _startPosY + 50, 10, 10);
+			g.drawOval(_startPosX + 25, _startPosY + 50, 10, 10);
+			break;
+		case five:
+			g.drawOval(_startPosX + 15, _startPosY + 50, 10, 10);
+			g.drawOval(_startPosX + 70, _startPosY + 50, 10, 10);
+			g.drawOval(_startPosX + 60, _startPosY + 50, 10, 10);
+			g.drawOval(_startPosX + 25, _startPosY + 50, 10, 10);
+			g.drawOval(_startPosX + 35, _startPosY + 50, 10, 10);
+			break;
+		case six:
+			g.drawOval(_startPosX + 15, _startPosY + 50, 10, 10);
+			g.drawOval(_startPosX + 70, _startPosY + 50, 10, 10);
+			g.drawOval(_startPosX + 60, _startPosY + 50, 10, 10);
+			g.drawOval(_startPosX + 25, _startPosY + 50, 10, 10);
+			g.drawOval(_startPosX + 35, _startPosY + 50, 10, 10);
+			g.drawOval(_startPosX + 45, _startPosY + 50, 10, 10);
+			break;
+		}
+
+	}
+
+}

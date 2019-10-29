@@ -5,10 +5,10 @@ import java.awt.RenderingHints;
 
 import javax.swing.JPanel;
 
-public class tractor extends Vehicle  {
-	
+public class tractor extends Vehicle {
+
 	wheel wheel = new wheel();
-	
+
 	public int getCarWidth() {
 		return carWidth;
 	}
@@ -25,8 +25,6 @@ public class tractor extends Vehicle  {
 		this.carHeight = carHeight;
 	}
 
-	
-
 	private int _pictureWidth;
 
 	private int _pictureHeight;
@@ -35,55 +33,49 @@ public class tractor extends Vehicle  {
 
 	private int carHeight = 60;
 
-	
-	public int MaxSpeed;
-
-	public float Weight;
-	
 	public tractor(int maxSpeed, float weight, Color mainColor) {
-		setMaxSpeed(maxSpeed);
-		setWeight(weight);
-		setMainColor(mainColor);
-		
+		this.setMaxSpeed(maxSpeed);
+		this.setWeight(weight);
+		this.setMainColor(mainColor);
+
 	}
-	
-	public void MoveTransport(Direction direction) {
+
+	public void Move(Direction direction) {
 		float step = MaxSpeed * 100 / Weight;
 		switch (direction) {
 		// вправо
 		case Right:
-			if (_startPosX + step < _pictureWidth - carWidth) {
+			if (_startPosX + step < 600)
 				_startPosX += step;
-			}
+
 			break;
 		// влево
 		case Left:
 			if (_startPosX - step > 0)
-
-			{
 				_startPosX -= step;
-			}
+
 			break;
 		// вверх
 		case Up:
-			if (_startPosY - step > 0) {
+			if (_startPosY - step > 0)
 				_startPosY -= step;
-			}
+
 			break;
 		// вниз
 		case Down:
-			if (_startPosY + step < _pictureHeight - carHeight) {
+			if (_startPosY + step < 400)
 				_startPosY += step;
-			}
+
 			break;
 		}
 	}
+
 	@Override
-	public void paint(Graphics g) {
-		//super.paint(g);
-		g.setColor(Color.black);		
-		g.drawRect(0,0,599,399);
-          
+	public void DrawCar(Graphics g) {
+		// super.paint(g);
+		g.setColor(Color.black);
+		g.drawRect(0, 0, 599, 399);
+
 		// теперь отрисуем основной кузов
 		// границы трактора
 		g.setColor(Color.black);
@@ -108,7 +100,6 @@ public class tractor extends Vehicle  {
 		g.fillRect(_startPosX + 16, _startPosY + 26, 64, 19);
 //            // wheels
 		g.setColor(Color.black);
-
 		g.drawLine(_startPosX + 35, _startPosY + 25, _startPosX + 40, _startPosY + 30);
 		g.drawLine(_startPosX + 40, _startPosY + 30, _startPosX + 35, _startPosY + 35);
 		// стекла
@@ -116,22 +107,8 @@ public class tractor extends Vehicle  {
 		g.setColor(lightBlue);
 		g.fillRect(_startPosX + 20, _startPosY + 5, 20, 15);
 	}
-	public void Draw() {
-		
-		super.repaint();
-	}
-
 	public void setWheel(int res) {
 		wheel.setWheel(res);
 	}
 
-	@Override
-	public void DrawCar(Graphics g) {
-		// TODO Auto-generated method stub
-		
-	}
-
-
-
-	
 }
