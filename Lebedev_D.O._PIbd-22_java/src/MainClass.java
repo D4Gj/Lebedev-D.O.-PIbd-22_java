@@ -19,10 +19,7 @@ public class MainClass  {
 
 	private JFrame frame;
 	private JPanel panel;
-	static Random rnd = new Random();
-	wheel wheel = new wheel();
 	private JTextField txtCheck;
-
 	private ITractor tractor;
 	private tractorPanel tractorPanel;
 
@@ -49,7 +46,6 @@ public class MainClass  {
 		try {
 			initialize();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -74,13 +70,7 @@ public class MainClass  {
 		JButton btnCreate = new JButton("tractor");
 		btnCreate.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				int res = 0;
-				if (checkString(txtCheck.getText()))
-					res = Integer.parseInt(txtCheck.getText());
-				if (res > 3 && res < 7) {
 					createTractor();
-				} else
-					txtCheck.setText("4/5/6");
 			}
 		});
 		btnCreate.setBounds(10, 10, 95, 34);
@@ -180,7 +170,7 @@ public class MainClass  {
 		}
 	}
 	private void paint() {
-		tractorPanel.validate();
+		//tractorPanel.validate();
 		tractorPanel.repaint();
 	}
 	private void createTractor() {

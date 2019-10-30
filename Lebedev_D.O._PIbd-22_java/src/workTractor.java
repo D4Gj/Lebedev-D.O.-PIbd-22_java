@@ -62,8 +62,7 @@ public class workTractor extends tractor {
 		this.setFrontLadle(frontLadle);
 		this.setWheel(amWheel);
 		Random rnd = new Random();
-		switch (//rnd.nextInt(3)
-				1) {
+		switch (rnd.nextInt(3)) {
 		case 0:
 			wheels = new NormWheel();
 			break;
