@@ -6,9 +6,14 @@ import java.awt.RenderingHints;
 import javax.swing.JPanel;
 
 public class tractor extends Vehicle {
+	
+	private AmountWheels amWheel ;
+	private IWheel wheels;
 
-	wheel wheel = new wheel();
-
+	public void setWheel(AmountWheels wheel) {
+		this.amWheel = wheel;
+	}
+	
 	public int getCarWidth() {
 		return carWidth;
 	}
@@ -37,7 +42,7 @@ public class tractor extends Vehicle {
 		this.setMaxSpeed(maxSpeed);
 		this.setWeight(weight);
 		this.setMainColor(mainColor);
-
+		wheels = new NormWheel();
 	}
 
 	public void Move(Direction direction) {
@@ -85,7 +90,7 @@ public class tractor extends Vehicle {
 		g.drawRect(_startPosX + 35, _startPosY + 45, 25, 10);
 		g.fillRect(_startPosX + 35, _startPosY + 45, 25, 10);
 		g.drawRect(_startPosX + 20, _startPosY + 50, 55, 10);
-		wheel.paint(g, _startPosX, _startPosY);
+		
 		// задн€€ фара окантовка
 		g.drawArc(_startPosX + 12, _startPosY + 30, 10, 10, 180, 360);
 		// передн€€ фара окантовка
@@ -106,9 +111,20 @@ public class tractor extends Vehicle {
 		Color lightBlue = new Color(173, 216, 230);
 		g.setColor(lightBlue);
 		g.fillRect(_startPosX + 20, _startPosY + 5, 20, 15);
+		
+		wheels.PrintWheels(amWheel, g, Color.black, _startPosX, _startPosY);
 	}
-	public void setWheel(int res) {
-		wheel.setWheel(res);
+
+	@Override
+	public int _startPosX() {
+		// TODO Auto-generated method stub
+		return _startPosX;
+	}
+
+	@Override
+	public int _startPosY() {
+		// TODO Auto-generated method stub
+		return _startPosY;
 	}
 
 }

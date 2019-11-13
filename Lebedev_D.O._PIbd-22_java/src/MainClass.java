@@ -14,17 +14,17 @@ import java.io.IOException;
 import java.util.Random;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
+import javax.swing.border.LineBorder;
 
 public class MainClass  {
 
 	private JFrame frame;
-	private JPanel panel;
+	private MyPanel panel;
 	static Random rnd = new Random();
-	wheel wheel = new wheel();
 	private JTextField txtCheck;
-
 	private ITractor tractor;
-	private tractorPanel tractorPanel;
+	private IWheel wheel;
+	private Park<ITractor,IWheel> park;
 
 	/**
 	 * Launch the application.
@@ -65,7 +65,7 @@ public class MainClass  {
 
 	private void initialize() throws IOException {
 		frame = new JFrame();
-		panel = new JPanel();
+		
 		frame.setBounds(100, 100, 1300, 700);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
@@ -151,11 +151,7 @@ public class MainClass  {
 				Move(btnRight);
 			}
 		});	
-		frame.getContentPane().add(btnRight);
-		tractorPanel = new tractorPanel();
-		tractorPanel.setBounds(new Rectangle(100,100,600,400));
-		frame.getContentPane().add(tractorPanel);
-		tractorPanel.setLayout(null);
+		
 	}
 	private void Move(JButton button) {
 		try {
@@ -174,22 +170,24 @@ public class MainClass  {
 	            	tractor.Move(Direction.Down);
 	                break;
 	        }
-	        paint();
+	       // paint();
 		}
 		catch (Exception e) {
 		}
 	}
-	private void paint() {
-		tractorPanel.validate();
-		tractorPanel.repaint();
-	}
 	private void createTractor() {
+		Random rnd = new Random();
 		tractor = new tractor(100, 250, Color.black);
-		tractorPanel.setTractor(tractor);
-		paint();
+		panel = new MyPanel(tractor);
+		panel.setBorder(new LineBorder(new Color(0, 0, 0)));
+		panel.setBounds(10, 10, 900, 500);
+		frame.getContentPane().add(panel);
+		tractor.SetPosition(50, 50, panel.getWidth(), panel.getHeight());
+		panel.repaint();
 	}
 	
 	private void createWorkTractor() {
+		Random rnd = new Random();
 		AmountWheels wheel;
 		int amount = Integer.parseInt(txtCheck.getText());
 		switch(amount) {
@@ -208,7 +206,7 @@ public class MainClass  {
 		}
 		tractor = new workTractor(100, 300, Color.blue,Color.red,wheel,
 	            true, true, true);
-		tractorPanel.setTractor(tractor);
-		paint();
+//		tractorPanel.setTractor(tractor);
+//		paint();
 	}
 }

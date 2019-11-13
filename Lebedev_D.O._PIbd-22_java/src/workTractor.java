@@ -63,7 +63,7 @@ public class workTractor extends tractor {
 		this.setWheel(amWheel);
 		Random rnd = new Random();
 		switch (//rnd.nextInt(3)
-				1) {
+				2) {
 		case 0:
 			wheels = new NormWheel();
 			break;
@@ -150,7 +150,7 @@ public class workTractor extends tractor {
 			g.fillOval(_startPosX + 56, _startPosY + 25, 4, 7);
 			g.fillRect(_startPosX + 58, _startPosY + 15, 2, 10);
 		}
-		wheels.DrawCar(amWheel, g, Color.black, _startPosX, _startPosY);
+		wheels.PrintWheels(amWheel, g, ExtrColor, _startPosX, _startPosY);
 	}
 
 }
