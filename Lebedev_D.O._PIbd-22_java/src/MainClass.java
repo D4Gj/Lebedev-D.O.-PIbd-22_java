@@ -170,13 +170,11 @@ public class MainClass  {
 	            	tractor.Move(Direction.Down);
 	                break;
 	        }
-	       // paint();
 		}
 		catch (Exception e) {
 		}
 	}
 	private void createTractor() {
-		Random rnd = new Random();
 		tractor = new tractor(100, 250, Color.black);
 		panel = new MyPanel(tractor);
 		panel.setBorder(new LineBorder(new Color(0, 0, 0)));
@@ -187,7 +185,6 @@ public class MainClass  {
 	}
 	
 	private void createWorkTractor() {
-		Random rnd = new Random();
 		AmountWheels wheel;
 		int amount = Integer.parseInt(txtCheck.getText());
 		switch(amount) {
@@ -204,7 +201,7 @@ public class MainClass  {
 			wheel = AmountWheels.four;
 			break;
 		}
-		tractor = new workTractor(100, 300, Color.blue,Color.red,wheel,
+		tractor = new workTractor(100, 300, Color.blue,Color.red,
 	            true, true, true);
 //		tractorPanel.setTractor(tractor);
 //		paint();

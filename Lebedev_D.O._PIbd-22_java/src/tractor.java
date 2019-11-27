@@ -1,18 +1,11 @@
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.RenderingHints;
+import java.util.Random;
 
-import javax.swing.JPanel;
 
 public class tractor extends Vehicle {
 	
-	private AmountWheels amWheel ;
-	private IWheel wheels;
-
-	public void setWheel(AmountWheels wheel) {
-		this.amWheel = wheel;
-	}
+	protected IWheel wheel;
 	
 	public int getCarWidth() {
 		return carWidth;
@@ -30,19 +23,27 @@ public class tractor extends Vehicle {
 		this.carHeight = carHeight;
 	}
 
-	private int _pictureWidth;
-
-	private int _pictureHeight;
-
 	private int carWidth = 100;
 
 	private int carHeight = 60;
+	
+	Random rnd = new Random();
 
 	public tractor(int maxSpeed, float weight, Color mainColor) {
 		this.setMaxSpeed(maxSpeed);
 		this.setWeight(weight);
 		this.setMainColor(mainColor);
-		wheels = new NormWheel();
+		switch(rnd.nextInt(3)) {
+		case 0:
+			wheel = new NormWheel(rnd.nextInt(3)+4);
+			break;
+		case 1:
+			wheel = new RecWheel(rnd.nextInt(3)+4);
+			break;
+		case 2:
+			wheel = new LineWheel(rnd.nextInt(3)+4);
+			break;
+		}
 	}
 
 	public void Move(Direction direction) {
@@ -80,7 +81,7 @@ public class tractor extends Vehicle {
 		// super.paint(g);
 		g.setColor(Color.black);
 		g.drawRect(0, 0, 599, 399);
-
+		
 		// теперь отрисуем основной кузов
 		// границы трактора
 		g.setColor(Color.black);
@@ -111,8 +112,7 @@ public class tractor extends Vehicle {
 		Color lightBlue = new Color(173, 216, 230);
 		g.setColor(lightBlue);
 		g.fillRect(_startPosX + 20, _startPosY + 5, 20, 15);
-		
-		wheels.PrintWheels(amWheel, g, Color.black, _startPosX, _startPosY);
+		wheel.PrintParkWheel(g, Color.black, _startPosX, _startPosY);
 	}
 
 	@Override

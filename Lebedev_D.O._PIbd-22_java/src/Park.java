@@ -47,10 +47,10 @@ public class Park<T extends ITractor, U extends IWheel> {
 		return places[index] == null;
 	}
 
-	public int AddTrac(T ship) {
+	public int AddTrac(T tractor) {
 		for (int i = 0; i < places.length; i++) {
 			if (CheckFreePlace(i)) {
-				places[i] = ship;
+				places[i] = tractor;
 				places[i].SetPosition(20 + i / 5 * placeSizeWidth, i % 5 * placeSizeHeight + 50, pictureWidth,
 						pictureHeight);
 				return i;
@@ -59,16 +59,44 @@ public class Park<T extends ITractor, U extends IWheel> {
 		return -1;
 	}
 
-	public int AddTrac(T ship, U wheel) {
+	public int AddTrac(T tractor, U wheel) {
 		for (int i = 0; i < places.length; i++) {
 			if (CheckFreePlace(i)) {
-				places[i] = ship;
+				places[i] = tractor;
 				places[i].SetPosition(20 + i / 5 * placeSizeWidth, i % 5 * placeSizeHeight + 50, pictureWidth,
 						pictureHeight);
 				placesWheels[i] = wheel;
-				placesWheels[i].SetPos(places[i]._startPosX(), places[i]._startPosY());
 				return i;
 			}
+		}
+		return -1;
+	}
+	
+	public int Less(T tractor) {
+		T last=null;
+		int tmp = 0;
+		for (int i = 0; i < places.length; i++) {
+			if (!CheckFreePlace(i)) {
+				last=places[i];
+				tmp=i;
+			}
+		}
+		if(tmp<3 && last!=null) {
+			AddTrac(tractor);
+		}
+		return -1;
+	}
+	public int More(T tractor) {
+		T last=null;
+		int tmp = 0;
+		for (int i = 0; i < places.length; i++) {
+			if (!CheckFreePlace(i)) {
+				last=places[i];
+				tmp=i;
+			}
+		}
+		if(tmp>3 && last!=null) {
+			AddTrac(tractor);
 		}
 		return -1;
 	}
@@ -84,12 +112,36 @@ public class Park<T extends ITractor, U extends IWheel> {
 			}
 		}
 	}
+	public T removeTrac(int index)
+	{
+		if(index<0|| index>places.length)
+			return null;
+		if(!CheckFreePlace(index)) {
+			T tractor = places[index];
+			places[index] = null;
+			return tractor;
+		}
+		return null;
+	}
+	public U removeWheel(int index) {
+		if (index < 0 || index > places.length)
+        {
+            return null;
+        }
+        if (placesWheels[index] != null)
+        {
+            U wheel = placesWheels[index];
+            placesWheels[index] = null;
+            return wheel;
+        }
+        return null;
+	}
 
 	private void DrawMarking(Graphics g) {
 		g.setColor(Color.BLACK);
-		g.drawRect(0, 0, (places.length / 2) * placeSizeWidth, 480);
+
 		for (int i = 0; i < places.length / 5; i++) {
-			for (int j = 0; j < 6; ++j) {
+			for (int j = 0; j < 7; ++j) {
 				g.drawLine(i * placeSizeWidth, j * placeSizeHeight, i * placeSizeWidth + 140, j * placeSizeHeight);
 			}
 			g.drawLine(i * placeSizeWidth, 0, i * placeSizeWidth, 400);

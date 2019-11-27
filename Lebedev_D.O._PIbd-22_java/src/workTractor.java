@@ -53,27 +53,13 @@ public class workTractor extends tractor {
 		this.amWheel = wheel;
 	}
 
-	public workTractor(int maxSpeed, float weight, Color mainColor, Color extrColor, AmountWheels amWheel,
+	public workTractor(int maxSpeed, float weight, Color mainColor, Color extrColor,
 			boolean rearLadle, boolean frontLadle, boolean pipe) {
 		super(maxSpeed, weight, mainColor);
 		this.setExtrColor(extrColor);
 		this.setPipe(pipe);
 		this.setRearLadle(rearLadle);
 		this.setFrontLadle(frontLadle);
-		this.setWheel(amWheel);
-		Random rnd = new Random();
-		switch (//rnd.nextInt(3)
-				2) {
-		case 0:
-			wheels = new NormWheel();
-			break;
-		case 1:
-			wheels = new RecWheel();
-			break;
-		case 2:
-			wheels = new LineWheel();
-			break;
-		}
 	}
 
 	@Override
@@ -150,7 +136,7 @@ public class workTractor extends tractor {
 			g.fillOval(_startPosX + 56, _startPosY + 25, 4, 7);
 			g.fillRect(_startPosX + 58, _startPosY + 15, 2, 10);
 		}
-		wheels.PrintWheels(amWheel, g, ExtrColor, _startPosX, _startPosY);
+		wheel.PrintParkWheel(g, Color.black, _startPosX, _startPosY);
 	}
 
 }
