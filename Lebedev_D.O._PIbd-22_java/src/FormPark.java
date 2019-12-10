@@ -65,9 +65,7 @@ public class FormPark {
 				if (newColor != null) {
 					tractor = new tractor(100, 250, newColor);
 					workTractor = new workTractor(100,100,newColor,Color.black,true,true,true);
-					park.AddTrac(tractor);
-					park.Less(workTractor);
-					park.More(workTractor);
+					park.AddTrac(tractor);					
 					panelPark.repaint();
 				}
 			}
@@ -100,6 +98,14 @@ public class FormPark {
 		textFieldIndex.setBounds(970, 221, 58, 20);
 		frame.getContentPane().add(textFieldIndex);
 		
+		JLabel LabelMore = new JLabel("FuncMore: ");
+		LabelMore.setBounds(889, 485, 127, 20);
+		frame.getContentPane().add(LabelMore);
+		
+		JLabel LabelLess = new JLabel("FuncLess: ");
+		LabelLess.setBounds(889, 511, 112, 20);
+		frame.getContentPane().add(LabelLess);
+		
 		btnTake = new JButton("Start tractor");
 		btnTake.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -116,6 +122,8 @@ public class FormPark {
 						panelTake.tractor.SetPosition(100, 100, panelParkWidth, panelParkHeight);
 						panelPark.repaint();
 						panelTake.repaint();
+						LabelMore.setText("FuncMore: "+park.More(tractor));
+						LabelLess.setText("FuncLess: "+park.Less(tractor));
 					}
 				}
 			}

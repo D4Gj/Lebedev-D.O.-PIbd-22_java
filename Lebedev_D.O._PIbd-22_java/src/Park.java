@@ -36,7 +36,6 @@ public class Park<T extends ITractor, U extends IWheel> {
 			places[i] = null;
 			placesWheels[i] = null;
 		}
-
 	}
 
 	public T getTrac(int index) {
@@ -72,33 +71,27 @@ public class Park<T extends ITractor, U extends IWheel> {
 		return -1;
 	}
 	
-	public int Less(T tractor) {
-		T last=null;
-		int tmp = 0;
+	public boolean Less(T tractor) {
+		T trac=null;
 		for (int i = 0; i < places.length; i++) {
-			if (!CheckFreePlace(i)) {
-				last=places[i];
-				tmp=i;
-			}
+			if(places[i]!=null)
+				trac=places[i];
 		}
-		if(tmp<3 && last!=null) {
-			AddTrac(tractor);
-		}
-		return -1;
+		if(trac!= null && trac.hashCode()>tractor.hashCode())
+			return true;
+		else 
+			return false;
 	}
-	public int More(T tractor) {
-		T last=null;
-		int tmp = 0;
+	public boolean More(T tractor) {
+		T trac=null;
 		for (int i = 0; i < places.length; i++) {
-			if (!CheckFreePlace(i)) {
-				last=places[i];
-				tmp=i;
-			}
+			if(places[i]!=null)
+				trac=places[i];
 		}
-		if(tmp>3 && last!=null) {
-			AddTrac(tractor);
-		}
-		return -1;
+		if(trac == null || trac.hashCode()<tractor.hashCode())
+			return true;
+		else 
+			return false;
 	}
 
 	public void Draw(Graphics g) {
@@ -139,7 +132,6 @@ public class Park<T extends ITractor, U extends IWheel> {
 
 	private void DrawMarking(Graphics g) {
 		g.setColor(Color.BLACK);
-
 		for (int i = 0; i < places.length / 5; i++) {
 			for (int j = 0; j < 7; ++j) {
 				g.drawLine(i * placeSizeWidth, j * placeSizeHeight, i * placeSizeWidth + 140, j * placeSizeHeight);
