@@ -203,7 +203,5 @@ public class MainClass  {
 		}
 		tractor = new workTractor(100, 300, Color.blue,Color.red,
 	            true, true, true);
-//		tractorPanel.setTractor(tractor);
-//		paint();
 	}
 }

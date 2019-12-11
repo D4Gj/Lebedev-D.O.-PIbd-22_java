@@ -1,11 +1,13 @@
 import java.awt.Color;
 import java.awt.Graphics;
+import java.util.HashMap;
 
 public class Park<T extends ITractor, U extends IWheel> {
-	private T[] places;
-	private U[] placesWheels;
 	private int pictureWidth;
 	private int pictureHeight;
+	private HashMap<Integer, T> places;
+	private HashMap<Integer, U> placesWheels;
+	private int maxPlaces;
 
 	public int getPictureWidth() {
 		return pictureWidth;
@@ -28,43 +30,49 @@ public class Park<T extends ITractor, U extends IWheel> {
 
 	@SuppressWarnings("unchecked")
 	public Park(int sizes, int pictureWidth, int pictureHeight) {
-		this.places = (T[]) new ITractor[sizes];
-		this.placesWheels = (U[]) new IWheel[sizes];
+		places = new HashMap<Integer, T>();
+		placesWheels = new HashMap<Integer, U>();
+		this.maxPlaces = sizes;
 		setPictureWidth(pictureWidth);
 		setPictureHeight(pictureHeight);
-		for (int i = 0; i < places.length; i++) {
-			places[i] = null;
-			placesWheels[i] = null;
-		}
 	}
 
 	public T getTrac(int index) {
-		return places[index];
+		return places.get(index);
 	}
 
 	private boolean CheckFreePlace(int index) {
-		return places[index] == null;
+		return places.get(index) == null;
 	}
 
 	public int AddTrac(T tractor) {
-		for (int i = 0; i < places.length; i++) {
-			if (CheckFreePlace(i)) {
-				places[i] = tractor;
-				places[i].SetPosition(20 + i / 5 * placeSizeWidth, i % 5 * placeSizeHeight + 50, pictureWidth,
-						pictureHeight);
-				return i;
-			}
-		}
-		return -1;
-	}
+		if (places.size() == maxPlaces)
+        {
+            return -1;
+        }
+
+        for (int i = 0; i < maxPlaces; i++)
+        {
+            if (CheckFreePlace(i))
+            {
+                places.put(i, tractor);
+                places.get(i).SetPosition(5 + i / 5 * placeSizeWidth + 5, i % 5 * placeSizeHeight + 15, 
+                		pictureWidth, pictureHeight);
+                return i;
+            }
+        }
+
+        return -1;
+    }
+	
 
 	public int AddTrac(T tractor, U wheel) {
-		for (int i = 0; i < places.length; i++) {
+		for (int i = 0; i < maxPlaces; i++) {
 			if (CheckFreePlace(i)) {
-				places[i] = tractor;
-				places[i].SetPosition(20 + i / 5 * placeSizeWidth, i % 5 * placeSizeHeight + 50, pictureWidth,
+				places.put(i,tractor);
+				places.get(i).SetPosition(20 + i / 5 * placeSizeWidth, i % 5 * placeSizeHeight + 50, pictureWidth,
 						pictureHeight);
-				placesWheels[i] = wheel;
+				placesWheels.put(i,wheel);
 				return i;
 			}
 		}
@@ -73,9 +81,9 @@ public class Park<T extends ITractor, U extends IWheel> {
 	
 	public boolean Less(T tractor) {
 		T trac=null;
-		for (int i = 0; i < places.length; i++) {
-			if(places[i]!=null)
-				trac=places[i];
+		for (int i = 0; i < maxPlaces; i++) {
+			if(places.get(i)!=null)
+				trac=places.get(i);
 		}
 		if(trac!= null && trac.hashCode()>tractor.hashCode())
 			return true;
@@ -84,9 +92,9 @@ public class Park<T extends ITractor, U extends IWheel> {
 	}
 	public boolean More(T tractor) {
 		T trac=null;
-		for (int i = 0; i < places.length; i++) {
-			if(places[i]!=null)
-				trac=places[i];
+		for (int i = 0; i < maxPlaces; i++) {
+			if(places.get(i)!=null)
+				trac=places.get(i);
 		}
 		if(trac == null || trac.hashCode()<tractor.hashCode())
 			return true;
@@ -96,35 +104,35 @@ public class Park<T extends ITractor, U extends IWheel> {
 
 	public void Draw(Graphics g) {
 		DrawMarking(g);
-		for (int i = 0; i < places.length; i++) {
+		for (int i = 0; i < maxPlaces; i++) {
 			if (!CheckFreePlace(i)) {
-				places[i].DrawCar(g);
-				if (placesWheels[i] != null)
-					placesWheels[i].PrintParkWheel(g, Color.black, placesWheels[i].getPosX(),
-							placesWheels[i].getPosY());
+				places.get(i).DrawCar(g);
+				if (placesWheels.get(i) != null)
+					placesWheels.get(i).PrintParkWheel(g, Color.black, placesWheels.get(i).getPosX(),
+							placesWheels.get(i).getPosY());
 			}
 		}
 	}
 	public T removeTrac(int index)
 	{
-		if(index<0|| index>places.length)
+		if(index<0|| index>maxPlaces)
 			return null;
 		if(!CheckFreePlace(index)) {
-			T tractor = places[index];
-			places[index] = null;
+			T tractor = places.get(index);
+			places.put(index,null);
 			return tractor;
 		}
 		return null;
 	}
 	public U removeWheel(int index) {
-		if (index < 0 || index > places.length)
+		if (index < 0 || index > maxPlaces)
         {
             return null;
         }
-        if (placesWheels[index] != null)
+        if (placesWheels.get(index) != null)
         {
-            U wheel = placesWheels[index];
-            placesWheels[index] = null;
+            U wheel = placesWheels.get(index);
+            placesWheels.put(index,null);
             return wheel;
         }
         return null;
@@ -132,7 +140,7 @@ public class Park<T extends ITractor, U extends IWheel> {
 
 	private void DrawMarking(Graphics g) {
 		g.setColor(Color.BLACK);
-		for (int i = 0; i < places.length / 5; i++) {
+		for (int i = 0; i < maxPlaces / 5; i++) {
 			for (int j = 0; j < 7; ++j) {
 				g.drawLine(i * placeSizeWidth, j * placeSizeHeight, i * placeSizeWidth + 140, j * placeSizeHeight);
 			}
