@@ -127,4 +127,9 @@ public class tractor extends Vehicle {
 		return _startPosY;
 	}
 
+	public void setWheels(IWheel wheels) {
+		wheel = wheels;
+		
+	}
+
 }
