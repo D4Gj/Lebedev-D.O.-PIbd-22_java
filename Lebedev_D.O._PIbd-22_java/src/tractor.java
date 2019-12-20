@@ -2,11 +2,10 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.util.Random;
 
-
 public class tractor extends Vehicle {
-	
+
 	protected IWheel wheel;
-	
+
 	public int getCarWidth() {
 		return carWidth;
 	}
@@ -26,22 +25,43 @@ public class tractor extends Vehicle {
 	private int carWidth = 100;
 
 	private int carHeight = 60;
-	
+
 	Random rnd = new Random();
 
 	public tractor(int maxSpeed, float weight, Color mainColor) {
 		this.setMaxSpeed(maxSpeed);
 		this.setWeight(weight);
 		this.setMainColor(mainColor);
-		switch(rnd.nextInt(3)) {
+		switch (rnd.nextInt(3)) {
 		case 0:
-			wheel = new NormWheel(rnd.nextInt(3)+4);
+			wheel = new NormWheel(rnd.nextInt(3) + 4);
 			break;
 		case 1:
-			wheel = new RecWheel(rnd.nextInt(3)+4);
+			wheel = new RecWheel(rnd.nextInt(3) + 4);
 			break;
 		case 2:
-			wheel = new LineWheel(rnd.nextInt(3)+4);
+			wheel = new LineWheel(rnd.nextInt(3) + 4);
+			break;
+		}
+	}
+
+	public tractor(String stats) {
+		String[] strs = stats.split(";");
+        if (strs.length == 3)
+        {
+            MaxSpeed = Integer.parseInt(strs[0]);
+            Weight = Float.parseFloat(strs[1]);
+            MainColor = new Color(Integer.parseInt(strs[2]));
+        }
+        switch (rnd.nextInt(3)) {
+		case 0:
+			wheel = new NormWheel(rnd.nextInt(3) + 4);
+			break;
+		case 1:
+			wheel = new RecWheel(rnd.nextInt(3) + 4);
+			break;
+		case 2:
+			wheel = new LineWheel(rnd.nextInt(3) + 4);
 			break;
 		}
 	}
@@ -81,7 +101,7 @@ public class tractor extends Vehicle {
 		// super.paint(g);
 		g.setColor(Color.black);
 		g.drawRect(0, 0, 599, 399);
-		
+
 		// теперь отрисуем основной кузов
 		// границы трактора
 		g.setColor(Color.black);
@@ -91,7 +111,7 @@ public class tractor extends Vehicle {
 		g.drawRect(_startPosX + 35, _startPosY + 45, 25, 10);
 		g.fillRect(_startPosX + 35, _startPosY + 45, 25, 10);
 		g.drawRect(_startPosX + 20, _startPosY + 50, 55, 10);
-		
+
 		// задняя фара окантовка
 		g.drawArc(_startPosX + 12, _startPosY + 30, 10, 10, 180, 360);
 		// передняя фара окантовка
@@ -129,7 +149,12 @@ public class tractor extends Vehicle {
 
 	public void setWheels(IWheel wheels) {
 		wheel = wheels;
-		
+
+	}
+
+	@Override
+	public String ToString() {
+		return MaxSpeed + ";" + Weight + ";" + MainColor.getRGB();
 	}
 
 }

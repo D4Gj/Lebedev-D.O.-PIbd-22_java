@@ -17,6 +17,5 @@ public class ConfigPanel extends JPanel {
 		super.paint(g);
 		if(tractor!=null)
 			tractor.DrawCar(g);
-		System.out.println("f");
 	}
 }

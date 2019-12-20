@@ -6,5 +6,5 @@ public interface ITractor {
     void DrawCar(Graphics g);
     int _startPosX();
     int _startPosY();
-
+    String ToString();
 }
