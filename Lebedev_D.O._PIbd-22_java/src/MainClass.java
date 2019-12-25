@@ -3,6 +3,9 @@ import java.awt.EventQueue;
 import java.awt.Graphics;
 import java.awt.Image;
 
+import java.awt.Rectangle;
+
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.imageio.ImageIO;
@@ -10,26 +13,16 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.io.IOException;
-import java.util.Random;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
 
-public class MainClass {
+public class MainClass  {
 
 	private JFrame frame;
 	private JPanel panel;
-	static Random rnd = new Random();
-	wheel wheel = new wheel();
-	tractor car = new tractor(rnd.nextInt(100), rnd.nextInt(100), Color.black, Color.blue, true, true, true);
 	private JTextField txtCheck;
-
-	private int carWidth = 100;
-	private int carHeight = 60;
-
-	private int upBorder = 0;
-	private int downBorder = 330;
-	private int leftBorder = 10;
-	private int rightBorder = 500;
+	private ITractor tractor;
+	private tractorPanel tractorPanel;
 
 	/**
 	 * Launch the application.
@@ -54,7 +47,7 @@ public class MainClass {
 		try {
 			initialize();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+      
 			e.printStackTrace();
 		}
 	}
@@ -76,38 +69,44 @@ public class MainClass {
 		frame.getContentPane().setLayout(null);
 		panel.setBounds(100, 200, 700, 500);
 
-		JButton btnCreate = new JButton("Create");
+
+		JButton btnCreate = new JButton("tractor");
 		btnCreate.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				int res = 0;
-				if (checkString(txtCheck.getText()))
-					res = Integer.parseInt(txtCheck.getText());
-				if (res > 3 && res < 7) {
-					car.setWheel(res);
-
-					car.set_startPosX(rnd.nextInt(100 + 150));
-					car.set_startPosY(rnd.nextInt(100 + 150));
-					car.setBounds(100, 100, 600, 400);
-					frame.getContentPane().add(car);
-					car.repaint();
-				} else
-					txtCheck.setText("4/5/6");
+					createTractor();
 			}
 		});
 		btnCreate.setBounds(10, 10, 95, 34);
 		frame.getContentPane().add(btnCreate);
+		
+		JButton btnCreateWork = new JButton("workTractor");
+		btnCreateWork.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
 
-		JButton btnUp = new JButton("");
+				int res = 0;
+				if (checkString(txtCheck.getText()))
+					res = Integer.parseInt(txtCheck.getText());
+				if (res > 3 && res < 7) {
+					createWorkTractor();
+				} else
+					txtCheck.setText("4/5/6");
+			}
+		});
+
+		btnCreateWork.setBounds(10, 50, 95, 34);
+		frame.getContentPane().add(btnCreateWork);
+
+		JButton btnUp = new JButton("btnUp");
 		btnUp.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (car.get_startPosY() > upBorder)
-					car.SetPosition(car.get_startPosX(), car.get_startPosY() - 10, carWidth, carHeight);
-				car.repaint();
+				Move(btnUp);
 			}
 		});
 		btnUp.setBounds(1027, 562, 85, 21);
 		Image imgUp = ImageIO.read(getClass().getResource("Resources/up.png"));
-		Image iconUp = imgUp.getScaledInstance(btnUp.getWidth(), btnUp.getHeight(), Image.SCALE_SMOOTH);
+
+	    Image iconUp = imgUp.getScaledInstance(btnUp.getWidth(), btnUp.getHeight(), Image.SCALE_SMOOTH);
+
 		btnUp.setIcon(new ImageIcon(iconUp));
 		frame.getContentPane().add(btnUp);
 
@@ -116,47 +115,97 @@ public class MainClass {
 		frame.getContentPane().add(txtCheck);
 		txtCheck.setColumns(10);
 
-		JButton btnDown = new JButton("");
+
+		JButton btnDown = new JButton("btnDown");
 		btnDown.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (car.get_startPosY() < downBorder)
-					car.SetPosition(car.get_startPosX(), car.get_startPosY() + 10, carWidth, carHeight);
-				car.repaint();
+				Move(btnDown);
 			}
 		});
 		btnDown.setBounds(1027, 593, 85, 21);
-		Image imgDown = ImageIO.read(getClass().getResource("Resources/down.png"));
-		Image iconDown = imgDown.getScaledInstance(btnDown.getWidth(), btnDown.getHeight(), Image.SCALE_SMOOTH);
+		Image imgDown= ImageIO.read(getClass().getResource("Resources/down.png"));
+	    Image iconDown = imgDown.getScaledInstance(btnDown.getWidth(), btnDown.getHeight(), Image.SCALE_SMOOTH);
 		btnDown.setIcon(new ImageIcon(iconDown));
 		frame.getContentPane().add(btnDown);
 
-		JButton btnLeft = new JButton("");
+		JButton btnLeft = new JButton("btnLeft");
 		btnLeft.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (car.get_startPosX() > leftBorder)
-					car.SetPosition(car.get_startPosX() - 10, car.get_startPosY(), 100, 60);
-				car.repaint();
-			}
-		});
+				Move(btnLeft);
+			}});
 		btnLeft.setBounds(932, 593, 85, 21);
 		Image imgLeft = ImageIO.read(getClass().getResource("Resources/left.png"));
-		Image iconLeft = imgLeft.getScaledInstance(btnLeft.getWidth(), btnLeft.getHeight(), Image.SCALE_SMOOTH);
+	    Image iconLeft = imgLeft.getScaledInstance(btnLeft.getWidth(), btnLeft.getHeight(), Image.SCALE_SMOOTH);
 		btnLeft.setIcon(new ImageIcon(iconLeft));
 		frame.getContentPane().add(btnLeft);
 
-		JButton btnRight = new JButton("");
+		JButton btnRight = new JButton("btnRight");
 		btnRight.setBounds(1122, 593, 85, 21);
 		Image imgRight = ImageIO.read(getClass().getResource("Resources/right.png"));
-		Image iconRight = imgRight.getScaledInstance(btnRight.getWidth(), btnRight.getHeight(), Image.SCALE_SMOOTH);
+	    Image iconRight = imgRight.getScaledInstance(btnRight.getWidth(), btnRight.getHeight(), Image.SCALE_SMOOTH);
 		btnRight.setIcon(new ImageIcon(iconRight));
 		btnRight.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (car.get_startPosX() < rightBorder)
-					car.SetPosition(car.get_startPosX() + 10, car.get_startPosY(), carWidth, carHeight);
-				car.repaint();
+				Move(btnRight);
 			}
-		});
+		});	
 		frame.getContentPane().add(btnRight);
+		tractorPanel = new tractorPanel();
+		tractorPanel.setBounds(new Rectangle(100,100,600,400));
+		frame.getContentPane().add(tractorPanel);
+		tractorPanel.setLayout(null);
 	}
-
+	private void Move(JButton button) {
+		try {
+			switch (button.getText())
+	        {
+	            case "btnRight":
+	                tractor.Move(Direction.Right);
+	                break;
+	            case "btnLeft":
+	            	tractor.Move(Direction.Left);
+	                break;
+	            case "btnUp":
+	            	tractor.Move(Direction.Up);
+	                break;
+	            case "btnDown":
+	            	tractor.Move(Direction.Down);
+	                break;
+	        }
+	        paint();
+		}
+		catch (Exception e) {
+		}
+	}
+	private void paint() {
+		tractorPanel.repaint();
+	}
+	private void createTractor() {
+		tractor = new tractor(100, 250, Color.black);
+		tractorPanel.setTractor(tractor);
+		paint();
+	}
+	
+	private void createWorkTractor() {
+		AmountWheels wheel;
+		int amount = Integer.parseInt(txtCheck.getText());
+		switch(amount) {
+		case 4:
+			wheel = AmountWheels.four;
+			break;
+		case 5:
+			wheel = AmountWheels.five;
+			break;
+		case 6:
+			wheel = AmountWheels.six;
+			break;
+		default:
+			wheel = AmountWheels.four;
+			break;
+		}
+		tractor = new workTractor(100, 300, Color.blue,Color.red,wheel,
+	            true, true, true);
+		tractorPanel.setTractor(tractor);
+		paint();
+	}
 }
