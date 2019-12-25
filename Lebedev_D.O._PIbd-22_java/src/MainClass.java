@@ -2,7 +2,9 @@ import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Graphics;
 import java.awt.Image;
+
 import java.awt.Rectangle;
+
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -45,6 +47,7 @@ public class MainClass  {
 		try {
 			initialize();
 		} catch (IOException e) {
+      
 			e.printStackTrace();
 		}
 	}
@@ -66,6 +69,7 @@ public class MainClass  {
 		frame.getContentPane().setLayout(null);
 		panel.setBounds(100, 200, 700, 500);
 
+
 		JButton btnCreate = new JButton("tractor");
 		btnCreate.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -78,6 +82,7 @@ public class MainClass  {
 		JButton btnCreateWork = new JButton("workTractor");
 		btnCreateWork.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+
 				int res = 0;
 				if (checkString(txtCheck.getText()))
 					res = Integer.parseInt(txtCheck.getText());
@@ -87,6 +92,7 @@ public class MainClass  {
 					txtCheck.setText("4/5/6");
 			}
 		});
+
 		btnCreateWork.setBounds(10, 50, 95, 34);
 		frame.getContentPane().add(btnCreateWork);
 
@@ -98,7 +104,9 @@ public class MainClass  {
 		});
 		btnUp.setBounds(1027, 562, 85, 21);
 		Image imgUp = ImageIO.read(getClass().getResource("Resources/up.png"));
+
 	    Image iconUp = imgUp.getScaledInstance(btnUp.getWidth(), btnUp.getHeight(), Image.SCALE_SMOOTH);
+
 		btnUp.setIcon(new ImageIcon(iconUp));
 		frame.getContentPane().add(btnUp);
 
@@ -106,6 +114,7 @@ public class MainClass  {
 		txtCheck.setBounds(115, 18, 96, 19);
 		frame.getContentPane().add(txtCheck);
 		txtCheck.setColumns(10);
+
 
 		JButton btnDown = new JButton("btnDown");
 		btnDown.addActionListener(new ActionListener() {
