@@ -11,7 +11,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.io.IOException;
-import java.util.Random;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
 
@@ -170,7 +169,6 @@ public class MainClass  {
 		}
 	}
 	private void paint() {
-		//tractorPanel.validate();
 		tractorPanel.repaint();
 	}
 	private void createTractor() {

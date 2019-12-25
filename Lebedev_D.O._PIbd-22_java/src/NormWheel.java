@@ -53,7 +53,5 @@ public class NormWheel implements IWheel {
 			g.drawOval(_startPosX + 45, _startPosY + 50, 10, 10);
 			break;
 		}
-
 	}
-
 }
