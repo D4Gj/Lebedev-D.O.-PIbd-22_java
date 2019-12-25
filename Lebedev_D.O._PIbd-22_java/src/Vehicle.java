@@ -75,8 +75,8 @@ public abstract class Vehicle implements ITractor {
 		MainColor = value;
 	}
      
-     public abstract void Move(Direction direction);
-     public abstract void DrawCar(Graphics g);
+    public abstract void Move(Direction direction);
+    public abstract void DrawCar(Graphics g);
 
 	public void repaint() {
 		// TODO Auto-generated method stub

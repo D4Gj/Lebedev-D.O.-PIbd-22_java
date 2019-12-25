@@ -78,7 +78,7 @@ public class workTractor extends tractor {
 			}
 			// okraska kovsha
 			g.fillOval(_startPosX + 83, _startPosY + 2, 10, 10);
-			// окантовка ковшика
+			// Г®Д™Е•Г­Е€Г®ГўД™Е• Д™Г®ГўЕ™ДЌД™Е•
 			g.setColor(Color.BLACK);
 			g.drawLine(_startPosX + 60, _startPosY + 30, _startPosX + 85, _startPosY + 5);
 			g.drawLine(_startPosX + 70, _startPosY + 30, _startPosX + 90, _startPosY + 10);
@@ -91,6 +91,7 @@ public class workTractor extends tractor {
 			g.drawLine(_startPosX + 95, _startPosY + 55, _startPosX + 84, _startPosY + 50);
 			g.drawLine(_startPosX + 84, _startPosY + 50, _startPosX + 84, _startPosY + 40);
 		}
+		
 		if (RearLadle) {
 			g.setColor(ExtrColor);
 			for (int i = 0; i < 10; ++i) {
@@ -108,7 +109,7 @@ public class workTractor extends tractor {
 			g.drawLine(_startPosX, _startPosY + 30, _startPosX, _startPosY + 40);
 			g.drawLine(_startPosX, _startPosY + 40, _startPosX + 7, _startPosY + 37);
 			g.drawLine(_startPosX + 7, _startPosY + 37, _startPosX + 7, _startPosY + 35);
-			// палки
+			// ДЏЕ•Г«Д™ДЌ
 			g.drawLine(_startPosX + 16, _startPosY + 40, _startPosX + 5, _startPosY + 5);
 			g.drawLine(_startPosX + 16, _startPosY + 30, _startPosX + 8, _startPosY + 1);
 			g.drawOval(_startPosX + 3, _startPosY + 1, 6, 6);
