@@ -14,7 +14,7 @@ import java.util.Random;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
 
-public class Java_test {
+public class MainClass {
 
 	private JFrame frame;
 	private JPanel panel;
@@ -38,7 +38,7 @@ public class Java_test {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Java_test window = new Java_test();
+					MainClass window = new MainClass();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -50,7 +50,7 @@ public class Java_test {
 	/**
 	 * Create the application.
 	 */
-	public Java_test() {
+	public MainClass() {
 		try {
 			initialize();
 		} catch (IOException e) {
