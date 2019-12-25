@@ -87,7 +87,6 @@ public class MainClass {
 
 					car.set_startPosX(rnd.nextInt(100 + 150));
 					car.set_startPosY(rnd.nextInt(100 + 150));
-					System.out.println(car.get_startPosX());
 					car.setBounds(100, 100, 600, 400);
 					frame.getContentPane().add(car);
 					car.repaint();
@@ -131,12 +130,11 @@ public class MainClass {
 		btnDown.setIcon(new ImageIcon(iconDown));
 		frame.getContentPane().add(btnDown);
 
-		JButton btnLeft = new JButton("New button");
+		JButton btnLeft = new JButton("");
 		btnLeft.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (car.get_startPosX() > leftBorder)
 					car.SetPosition(car.get_startPosX() - 10, car.get_startPosY(), 100, 60);
-				System.out.println(car.get_startPosX());
 				car.repaint();
 			}
 		});
