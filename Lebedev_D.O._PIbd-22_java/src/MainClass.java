@@ -2,10 +2,8 @@ import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Graphics;
 import java.awt.Image;
-import java.awt.Rectangle;
 
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -17,9 +15,8 @@ import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
 
 public class MainClass  {
-
 	private JFrame frame;
-	private MyPanel panel;
+	private BordersPanel panel;
 	static Random rnd = new Random();
 	private JTextField txtCheck;
 	private ITractor tractor;
@@ -176,7 +173,7 @@ public class MainClass  {
 	}
 	private void createTractor() {
 		tractor = new tractor(100, 250, Color.black);
-		panel = new MyPanel(tractor);
+		panel = new BordersPanel(tractor);
 		panel.setBorder(new LineBorder(new Color(0, 0, 0)));
 		panel.setBounds(10, 10, 900, 500);
 		frame.getContentPane().add(panel);
@@ -203,7 +200,5 @@ public class MainClass  {
 		}
 		tractor = new workTractor(100, 300, Color.blue,Color.red,
 	            true, true, true);
-//		tractorPanel.setTractor(tractor);
-//		paint();
 	}
 }

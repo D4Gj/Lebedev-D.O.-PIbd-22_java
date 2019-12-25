@@ -18,7 +18,6 @@ public class RecWheel implements IWheel {
 		default:
 			wheel = AmountWheels.four;
 			break;
-		
 		}
 	}
 

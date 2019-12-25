@@ -92,7 +92,6 @@ public class LineWheel implements IWheel {
 		return _startPosX;
 	}
 
-
 	@Override
 	public int getPosY() {
 		// TODO Auto-generated method stub

@@ -11,7 +11,6 @@ public abstract class Vehicle implements ITractor {
      public float Weight;
      public Color MainColor;
      
-
  	public int getMaxSpeed() {
  		return MaxSpeed;
  	}

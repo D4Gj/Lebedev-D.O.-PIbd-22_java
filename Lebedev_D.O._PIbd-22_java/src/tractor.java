@@ -53,25 +53,21 @@ public class tractor extends Vehicle {
 		case Right:
 			if (_startPosX + step < 600)
 				_startPosX += step;
-
 			break;
 		// влево
 		case Left:
 			if (_startPosX - step > 0)
 				_startPosX -= step;
-
 			break;
 		// вверх
 		case Up:
 			if (_startPosY - step > 0)
 				_startPosY -= step;
-
 			break;
 		// вниз
 		case Down:
 			if (_startPosY + step < 400)
 				_startPosY += step;
-
 			break;
 		}
 	}
@@ -126,5 +122,4 @@ public class tractor extends Vehicle {
 		// TODO Auto-generated method stub
 		return _startPosY;
 	}
-
 }
