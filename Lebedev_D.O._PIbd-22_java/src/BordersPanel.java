@@ -2,10 +2,10 @@ import java.awt.Graphics;
 
 import javax.swing.JPanel;
 
-public class MyPanel extends JPanel {
+public class BordersPanel extends JPanel {
 	ITractor tractor;
 
-	public MyPanel(ITractor input) {
+	public BordersPanel(ITractor input) {
 		tractor = input;
 	}
 

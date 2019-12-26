@@ -1,3 +1,4 @@
+
 import java.awt.Graphics;
 
 public interface ITractor {
@@ -6,5 +7,5 @@ public interface ITractor {
     void DrawCar(Graphics g);
     int _startPosX();
     int _startPosY();
-
 }
+
