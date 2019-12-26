@@ -78,10 +78,8 @@ public class tractor extends Vehicle {
 
 	@Override
 	public void DrawCar(Graphics g) {
-		// super.paint(g);
 		g.setColor(Color.black);
 		g.drawRect(0, 0, 599, 399);
-		
 		// теперь отрисуем основной кузов
 		// границы трактора
 		g.setColor(Color.black);
@@ -129,7 +127,5 @@ public class tractor extends Vehicle {
 
 	public void setWheels(IWheel wheels) {
 		wheel = wheels;
-		
 	}
-
 }

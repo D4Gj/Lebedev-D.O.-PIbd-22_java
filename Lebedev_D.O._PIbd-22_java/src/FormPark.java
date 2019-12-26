@@ -128,7 +128,5 @@ public class FormPark {
 		panelPark.setBorder(new LineBorder(new Color(0, 0, 0)));
 		panelPark.setBounds(10, 11, panelParkHeight, panelParkHeight);
 		frame.getContentPane().add(panelPark);
-		
-		
 	}
 }

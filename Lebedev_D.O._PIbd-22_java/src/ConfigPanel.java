@@ -7,8 +7,7 @@ public class ConfigPanel extends JPanel {
 	ITractor tractor;
 	public void setTractor(ITractor trac) {
 		tractor = trac;
-		tractor.SetPosition(0, 0, 870, 600);
-		
+		tractor.SetPosition(0, 0, 870, 600);	
 	}
 	public ITractor getTractor() {
 		return tractor;
@@ -17,6 +16,5 @@ public class ConfigPanel extends JPanel {
 		super.paint(g);
 		if(tractor!=null)
 			tractor.DrawCar(g);
-		System.out.println("f");
 	}
 }
