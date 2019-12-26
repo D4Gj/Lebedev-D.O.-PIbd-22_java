@@ -32,12 +32,14 @@ public class MultiLevelParking {
     }
     
     public ITractor getTrac(int parkIndex, int transportIndex) {
-//    	if(parkIndex<0 || parkIndex>=parkStages.size())
-//    		return null;
     	return parkStages.get(parkIndex).getTrac(transportIndex);
     }
 
 	public boolean SaveLevel(String name,int lvl) throws IOException {
+		try {
+			if (lvl < parkStages.size() && lvl > 0) {
+				return false;
+			}
 		FileWriter fw = new FileWriter(name);
         WriteToFile("Level:"+ lvl + "\n", fw);
         Park<ITractor, IWheel> level = parkStages.get(lvl);
@@ -59,8 +61,11 @@ public class MultiLevelParking {
         }
         
         fw.close();
-        
         return true;
+		}catch(Exception e) {
+			e.printStackTrace();
+			return false;
+		}
 	}
 	 private void WriteToFile(String text, FileWriter fw)
 	    {
@@ -153,6 +158,7 @@ public class MultiLevelParking {
 	}
 
 	public boolean LoadLevel(String absolutePath) throws IOException {
+		try {
 		FileReader fr = new FileReader(absolutePath);
         String bufferTextFromFile = "";
         int lvl = 0;
@@ -198,7 +204,11 @@ public class MultiLevelParking {
             } else {
             	bufferTextFromFile += (char)c;
             }
-        }
+          } 
+        }catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
         
         return true;
 	}
