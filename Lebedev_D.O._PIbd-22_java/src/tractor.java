@@ -81,7 +81,6 @@ public class tractor extends Vehicle {
 		// super.paint(g);
 		g.setColor(Color.black);
 		g.drawRect(0, 0, 599, 399);
-		
 		// теперь отрисуем основной кузов
 		// границы трактора
 		g.setColor(Color.black);
@@ -96,7 +95,6 @@ public class tractor extends Vehicle {
 		g.drawArc(_startPosX + 12, _startPosY + 30, 10, 10, 180, 360);
 		// передняя фара окантовка
 		g.drawArc(_startPosX + 75, _startPosY + 35, 8, 8, 270, 180);
-
 //            //задние фары
 		g.setColor(Color.red);
 		g.fillOval(_startPosX + 12, _startPosY + 31, 9, 9);

@@ -42,7 +42,7 @@ public class workTractor extends tractor {
 	}
 
 	private AmountWheels amWheel;
-	
+
 	private IWheel wheels;
 
 	public AmountWheels getWheel() {
@@ -53,8 +53,8 @@ public class workTractor extends tractor {
 		this.amWheel = wheel;
 	}
 
-	public workTractor(int maxSpeed, float weight, Color mainColor, Color extrColor,
-			boolean rearLadle, boolean frontLadle, boolean pipe) {
+	public workTractor(int maxSpeed, float weight, Color mainColor, Color extrColor, boolean rearLadle,
+			boolean frontLadle, boolean pipe) {
 		super(maxSpeed, weight, mainColor);
 		this.setExtrColor(extrColor);
 		this.setPipe(pipe);
@@ -66,7 +66,6 @@ public class workTractor extends tractor {
 	public void DrawCar(Graphics g) {
 		super.DrawCar(g);
 		if (FrontLadle) {
-
 			g.setColor(ExtrColor);
 			for (int i = 1; i < 14; i++) {
 				g.drawLine(_startPosX + 60 + i, _startPosY + 30, _startPosX + 85 + i / 2, _startPosY + 5);
@@ -91,10 +90,8 @@ public class workTractor extends tractor {
 			g.drawLine(_startPosX + 95, _startPosY + 35, _startPosX + 95, _startPosY + 55);
 			g.drawLine(_startPosX + 95, _startPosY + 55, _startPosX + 84, _startPosY + 50);
 			g.drawLine(_startPosX + 84, _startPosY + 50, _startPosX + 84, _startPosY + 40);
-
 		}
 		if (RearLadle) {
-
 			g.setColor(ExtrColor);
 			for (int i = 0; i < 10; ++i) {
 				g.drawLine(_startPosX + 16, _startPosY + 33 + i, _startPosX + 5 + i / 2, _startPosY + 5 - i / 2);
@@ -121,7 +118,6 @@ public class workTractor extends tractor {
 			g.setColor(Color.black);
 			g.drawLine(_startPosX + 4, _startPosY + 1, _startPosX + 4, _startPosY + 35);
 			g.drawLine(_startPosX + 7, _startPosY + 1, _startPosX + 7, _startPosY + 35);
-
 		}
 
 		if (Pipe) {
@@ -138,5 +134,4 @@ public class workTractor extends tractor {
 		}
 		wheel.PrintParkWheel(g, Color.black, _startPosX, _startPosY);
 	}
-
 }

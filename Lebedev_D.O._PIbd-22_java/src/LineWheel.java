@@ -21,7 +21,6 @@ public class LineWheel implements IWheel {
 			break;
 		}
 	}
-		
 	
 	@Override
 	public void SetPos(int x, int y) {
@@ -91,7 +90,6 @@ public class LineWheel implements IWheel {
 		// TODO Auto-generated method stub
 		return _startPosX;
 	}
-
 
 	@Override
 	public int getPosY() {

@@ -151,7 +151,6 @@ public class MainClass  {
 				Move(btnRight);
 			}
 		});	
-		
 	}
 	private void Move(JButton button) {
 		try {
