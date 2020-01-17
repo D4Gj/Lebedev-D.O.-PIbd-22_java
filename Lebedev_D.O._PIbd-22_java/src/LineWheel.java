@@ -1,4 +1,3 @@
-
 import java.awt.Color;
 import java.awt.Graphics;
 
@@ -98,4 +97,3 @@ public class LineWheel implements IWheel {
 		return _startPosY;
 	}
 }
-

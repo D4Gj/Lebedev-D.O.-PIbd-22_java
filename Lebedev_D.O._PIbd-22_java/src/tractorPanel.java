@@ -1,4 +1,5 @@
 import java.awt.Graphics;
+import java.io.IOException;
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -6,13 +7,13 @@ import javax.swing.JPanel;
 
 
 public class tractorPanel extends JPanel {
-	  MultiLevelParking park = new MultiLevelParking(15, 1000, 700);
+	  MultiLevelParking park = new MultiLevelParking(5, 1000, 700);
 	  Queue<ITractor> queue = new LinkedList<ITractor>();
 	  private final int countLevel = 5;
 	  private int currentLevel = 0;
 
 	public tractorPanel() {
-		this.park = new MultiLevelParking(20, 1000, 700);
+		this.park = new MultiLevelParking(5, 1000, 700);
 	}
 
 	public void paint(Graphics g) {
@@ -42,5 +43,37 @@ public class tractorPanel extends JPanel {
 	
 	public boolean Less(ITractor tractor) {
 		return park.level(currentLevel).Less(tractor);
+	}
+
+	public void SaveData(String name) {
+		try {
+			park.SaveData(name);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void LoadData(String absolutePath) {
+		try {
+			park.LoadData(absolutePath);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void LoadCurrentLevel(String absolutePath) {
+		try {
+			park.LoadLevel(absolutePath);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void SaveCurrentLevel(String name) {
+		try {
+			park.SaveLevel(name, currentLevel);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 }

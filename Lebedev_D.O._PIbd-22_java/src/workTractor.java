@@ -1,4 +1,3 @@
-
 import java.awt.Color;
 import java.awt.Graphics;
 import java.util.Random;
@@ -43,7 +42,7 @@ public class workTractor extends tractor {
 	}
 
 	private AmountWheels amWheel;
-	
+
 	private IWheel wheels;
 
 	public AmountWheels getWheel() {
@@ -54,13 +53,28 @@ public class workTractor extends tractor {
 		this.amWheel = wheel;
 	}
 
-	public workTractor(int maxSpeed, float weight, Color mainColor, Color extrColor,
-			boolean rearLadle, boolean frontLadle, boolean pipe) {
+	public workTractor(int maxSpeed, float weight, Color mainColor, Color extrColor, boolean rearLadle,
+			boolean frontLadle, boolean pipe) {
 		super(maxSpeed, weight, mainColor);
 		this.setExtrColor(extrColor);
 		this.setPipe(pipe);
 		this.setRearLadle(rearLadle);
 		this.setFrontLadle(frontLadle);
+	}
+
+	public workTractor(String stats) {
+		super(stats);
+		  String[] strs = stats.split(";");
+	        if (strs.length == 7)
+	        {
+	            MaxSpeed = Integer.parseInt(strs[0]);
+	            Weight = Float.parseFloat(strs[1]);
+	            MainColor = new Color(Integer.parseInt(strs[2]));
+	            ExtrColor = new Color(Integer.parseInt(strs[3]));
+	            this.Pipe = Boolean.parseBoolean(strs[4]);
+	            this.FrontLadle = Boolean.parseBoolean(strs[5]);
+	            this.RearLadle = Boolean.parseBoolean(strs[6]);
+	        }
 	}
 
 	@Override
@@ -93,7 +107,6 @@ public class workTractor extends tractor {
 			g.drawLine(_startPosX + 84, _startPosY + 50, _startPosX + 84, _startPosY + 40);
 		}
 		if (RearLadle) {
-
 			g.setColor(ExtrColor);
 			for (int i = 0; i < 10; ++i) {
 				g.drawLine(_startPosX + 16, _startPosY + 33 + i, _startPosX + 5 + i / 2, _startPosY + 5 - i / 2);
@@ -134,5 +147,10 @@ public class workTractor extends tractor {
 			g.fillRect(_startPosX + 58, _startPosY + 15, 2, 10);
 		}
 		wheel.PrintParkWheel(g, Color.black, _startPosX, _startPosY);
+	}
+
+	@Override
+	public String ToString() {
+		return super.ToString() + ";" + ExtrColor.getRGB() + ";" + RearLadle + ";" + FrontLadle + ";" + Pipe;
 	}
 }

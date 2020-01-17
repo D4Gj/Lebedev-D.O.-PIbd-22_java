@@ -4,16 +4,22 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JButton;
 import javax.swing.JColorChooser;
+import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 import java.util.ArrayList;
 import java.awt.List;
 import java.awt.Color;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.security.SecureRandom;
 import java.awt.event.ActionEvent;
+import javax.swing.JMenuBar;
+import javax.swing.JMenu;
+import javax.swing.JMenuItem;
 
 public class FormPark {
 
@@ -122,11 +128,86 @@ public class FormPark {
 		});
 		btnNewTractor.setBounds(889, 31, 215, 111);
 		frame.getContentPane().add(btnNewTractor);
+		
+		JMenuBar menuBar = new JMenuBar();
+		frame.setJMenuBar(menuBar);
+		
+		JMenu mnFile = new JMenu("File");
+		menuBar.add(mnFile);
+		
+		JMenuItem mntmFileLoad = new JMenuItem("Load file");
+		mntmFileLoad.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				JFileChooser filechooser = new JFileChooser();
+				FileNameExtensionFilter filter = new FileNameExtensionFilter("txt", "txt");
+				filechooser.setFileFilter(filter);
+				int ret = filechooser.showDialog(null, "Load");                
+				if (ret == JFileChooser.APPROVE_OPTION) {
+				    File file = filechooser.getSelectedFile();
+				    panelPark.LoadData(file.getAbsolutePath());
+				    panelPark.repaint();
+				}
+			}
+		});
+		mnFile.add(mntmFileLoad);
+		
+		JMenuItem mntmFileSave = new JMenuItem("Save file");
+		mntmFileSave.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				JFileChooser filechooser = new JFileChooser();
+				FileNameExtensionFilter filter = new FileNameExtensionFilter(null, "txt");
+				filechooser.setFileFilter(filter);
+				int ret = filechooser.showDialog(null, "Save");                
+				if (ret == JFileChooser.APPROVE_OPTION) {
+				    File file = filechooser.getSelectedFile();
+				    if(!file.exists())
+				    panelPark.SaveData(file.getAbsolutePath() + ".txt");
+				    else 
+				    	panelPark.SaveData(file.getAbsolutePath());
+				}
+			}
+		});
+		mnFile.add(mntmFileSave);
+		
+		JMenu mnLevel = new JMenu("Level");
+		menuBar.add(mnLevel);
+		
+		JMenuItem mntmLevelSave = new JMenuItem("Save level");
+		mntmLevelSave.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				JFileChooser filechooser = new JFileChooser();
+				FileNameExtensionFilter filter = new FileNameExtensionFilter("lvl", "lvl");
+				filechooser.setFileFilter(filter);
+				int ret = filechooser.showDialog(null, "Save");                
+				if (ret == JFileChooser.APPROVE_OPTION) {
+				    File file = filechooser.getSelectedFile();
+				    panelPark.SaveCurrentLevel(file.getAbsolutePath() + ".lvl");
+				    panelPark.repaint();
+				}
+			}
+		});
+		mnLevel.add(mntmLevelSave);
+		
+		JMenuItem mntmLevelLoad = new JMenuItem("Load level");
+		mntmLevelLoad.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				JFileChooser filechooser = new JFileChooser();
+				FileNameExtensionFilter filter = new FileNameExtensionFilter("lvl", "lvl");
+				filechooser.setFileFilter(filter);
+				int ret = filechooser.showDialog(null, "Load");                
+				if (ret == JFileChooser.APPROVE_OPTION) {
+				    File file = filechooser.getSelectedFile();
+				    panelPark.LoadCurrentLevel(file.getAbsolutePath());
+				    panelPark.repaint();
+				}
+			}
+		});
+		mnLevel.add(mntmLevelLoad);
 	}
 	public void initializeParkPanel() {
 		panelPark = new tractorPanel();
 		panelPark.setBorder(new LineBorder(new Color(0, 0, 0)));
-		panelPark.setBounds(10, 11, panelParkHeight, panelParkHeight);
+		panelPark.setBounds(10, 11, 600, 563);
 		frame.getContentPane().add(panelPark);
 	}
 }

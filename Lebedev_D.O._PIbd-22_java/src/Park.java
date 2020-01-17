@@ -146,4 +146,8 @@ public class Park<T extends ITractor, U extends IWheel> {
 			g.drawLine(i * placeSizeWidth, 0, i * placeSizeWidth, 400);
 		}
 	}
+	public void setTractor(int index,T tractor) {
+		places.put(index, tractor);
+		places.get(index).SetPosition(5 + index / 5 * placeSizeWidth + 5, index % 5 * placeSizeHeight + 15, pictureWidth, pictureHeight);
+	}
 }
