@@ -81,7 +81,6 @@ public class workTractor extends tractor {
 	public void DrawCar(Graphics g) {
 		super.DrawCar(g);
 		if (FrontLadle) {
-
 			g.setColor(ExtrColor);
 			for (int i = 1; i < 14; i++) {
 				g.drawLine(_startPosX + 60 + i, _startPosY + 30, _startPosX + 85 + i / 2, _startPosY + 5);
@@ -106,7 +105,6 @@ public class workTractor extends tractor {
 			g.drawLine(_startPosX + 95, _startPosY + 35, _startPosX + 95, _startPosY + 55);
 			g.drawLine(_startPosX + 95, _startPosY + 55, _startPosX + 84, _startPosY + 50);
 			g.drawLine(_startPosX + 84, _startPosY + 50, _startPosX + 84, _startPosY + 40);
-
 		}
 		if (RearLadle) {
 
@@ -136,9 +134,7 @@ public class workTractor extends tractor {
 			g.setColor(Color.black);
 			g.drawLine(_startPosX + 4, _startPosY + 1, _startPosX + 4, _startPosY + 35);
 			g.drawLine(_startPosX + 7, _startPosY + 1, _startPosX + 7, _startPosY + 35);
-
 		}
-
 		if (Pipe) {
 			g.setColor(Color.black);
 			g.drawArc(_startPosX + 55, _startPosY + 27, 5, 5, 0, 130);

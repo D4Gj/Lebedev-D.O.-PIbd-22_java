@@ -99,11 +99,8 @@ public class MultiLevelParking {
                 }
             }
         }
-        
         fw.close();
-        
         return true;
-		
 	}
 
 	public boolean LoadData(String absolutePath) throws IOException {
@@ -209,7 +206,6 @@ public class MultiLevelParking {
 			e.printStackTrace();
 			return false;
 		}
-        
         return true;
 	}
 }

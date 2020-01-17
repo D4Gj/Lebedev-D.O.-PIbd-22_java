@@ -73,35 +73,29 @@ public class tractor extends Vehicle {
 		case Right:
 			if (_startPosX + step < 600)
 				_startPosX += step;
-
 			break;
 		// влево
 		case Left:
 			if (_startPosX - step > 0)
 				_startPosX -= step;
-
 			break;
 		// вверх
 		case Up:
 			if (_startPosY - step > 0)
 				_startPosY -= step;
-
 			break;
 		// вниз
 		case Down:
 			if (_startPosY + step < 400)
 				_startPosY += step;
-
 			break;
 		}
 	}
 
 	@Override
 	public void DrawCar(Graphics g) {
-		// super.paint(g);
 		g.setColor(Color.black);
 		g.drawRect(0, 0, 599, 399);
-
 		// теперь отрисуем основной кузов
 		// границы трактора
 		g.setColor(Color.black);
@@ -116,15 +110,14 @@ public class tractor extends Vehicle {
 		g.drawArc(_startPosX + 12, _startPosY + 30, 10, 10, 180, 360);
 		// передняя фара окантовка
 		g.drawArc(_startPosX + 75, _startPosY + 35, 8, 8, 270, 180);
-
-//            //задние фары
+            //задние фары
 		g.setColor(Color.red);
 		g.fillOval(_startPosX + 12, _startPosY + 31, 9, 9);
-//            //кузов
+            //кузов
 		g.setColor(MainColor);
 		g.fillRect(_startPosX + 16, _startPosY + 1, 24, 44);
 		g.fillRect(_startPosX + 16, _startPosY + 26, 64, 19);
-//            // wheels
+            // wheels
 		g.setColor(Color.black);
 		g.drawLine(_startPosX + 35, _startPosY + 25, _startPosX + 40, _startPosY + 30);
 		g.drawLine(_startPosX + 40, _startPosY + 30, _startPosX + 35, _startPosY + 35);
@@ -156,5 +149,4 @@ public class tractor extends Vehicle {
 	public String ToString() {
 		return MaxSpeed + ";" + Weight + ";" + MainColor.getRGB();
 	}
-
 }

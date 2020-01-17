@@ -8,7 +8,6 @@ public class ConfigPanel extends JPanel {
 	public void setTractor(ITractor trac) {
 		tractor = trac;
 		tractor.SetPosition(0, 0, 870, 600);
-		
 	}
 	public ITractor getTractor() {
 		return tractor;

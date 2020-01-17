@@ -10,7 +10,6 @@ public abstract class Vehicle implements ITractor {
      public int MaxSpeed;
      public float Weight;
      public Color MainColor;
-     
 
  	public int getMaxSpeed() {
  		return MaxSpeed;
@@ -80,7 +79,6 @@ public abstract class Vehicle implements ITractor {
      public abstract void DrawCar(Graphics g);
 
 	public void repaint() {
-		// TODO Auto-generated method stub
-		
+		// TODO Auto-generated method stub	
 	}
 }
