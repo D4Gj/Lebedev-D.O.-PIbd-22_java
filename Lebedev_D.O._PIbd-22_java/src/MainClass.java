@@ -1,4 +1,3 @@
-
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Graphics;
@@ -149,7 +148,6 @@ public class MainClass  {
 				Move(btnRight);
 			}
 		});	
-		
 	}
 	private void Move(JButton button) {
 		try {

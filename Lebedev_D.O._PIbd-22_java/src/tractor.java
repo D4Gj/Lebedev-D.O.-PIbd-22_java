@@ -1,4 +1,3 @@
-
 import java.awt.Color;
 import java.awt.Graphics;
 import java.util.Random;
@@ -121,7 +120,7 @@ public class tractor extends Vehicle {
 		// TODO Auto-generated method stub
 		return _startPosY;
 	}
-
+  
 	public void setWheels(IWheel wheels) {
 		wheel = wheels;
 	}
