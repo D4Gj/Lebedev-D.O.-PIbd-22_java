@@ -54,25 +54,21 @@ public class tractor extends Vehicle {
 		case Right:
 			if (_startPosX + step < 600)
 				_startPosX += step;
-
 			break;
 		// �����
 		case Left:
 			if (_startPosX - step > 0)
 				_startPosX -= step;
-
 			break;
 		// �����
 		case Up:
 			if (_startPosY - step > 0)
 				_startPosY -= step;
-
 			break;
 		// ����
 		case Down:
 			if (_startPosY + step < 400)
 				_startPosY += step;
-
 			break;
 		}
 	}
@@ -96,14 +92,14 @@ public class tractor extends Vehicle {
 		// �������� ���� ���������
 		g.drawArc(_startPosX + 75, _startPosY + 35, 8, 8, 270, 180);
 
-//            //������ ����
+            //������ ����
 		g.setColor(Color.red);
 		g.fillOval(_startPosX + 12, _startPosY + 31, 9, 9);
-//            //�����
+            //�����
 		g.setColor(MainColor);
 		g.fillRect(_startPosX + 16, _startPosY + 1, 24, 44);
 		g.fillRect(_startPosX + 16, _startPosY + 26, 64, 19);
-//            // wheels
+            // wheels
 		g.setColor(Color.black);
 		g.drawLine(_startPosX + 35, _startPosY + 25, _startPosX + 40, _startPosY + 30);
 		g.drawLine(_startPosX + 40, _startPosY + 30, _startPosX + 35, _startPosY + 35);

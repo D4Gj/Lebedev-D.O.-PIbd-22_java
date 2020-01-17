@@ -91,7 +91,6 @@ public class workTractor extends tractor {
 			g.drawLine(_startPosX + 95, _startPosY + 35, _startPosX + 95, _startPosY + 55);
 			g.drawLine(_startPosX + 95, _startPosY + 55, _startPosX + 84, _startPosY + 50);
 			g.drawLine(_startPosX + 84, _startPosY + 50, _startPosX + 84, _startPosY + 40);
-
 		}
 		if (RearLadle) {
 
@@ -122,7 +121,6 @@ public class workTractor extends tractor {
 			g.drawLine(_startPosX + 4, _startPosY + 1, _startPosX + 4, _startPosY + 35);
 			g.drawLine(_startPosX + 7, _startPosY + 1, _startPosX + 7, _startPosY + 35);
 		}
-
 		if (Pipe) {
 			g.setColor(Color.black);
 			g.drawArc(_startPosX + 55, _startPosY + 27, 5, 5, 0, 130);

@@ -80,6 +80,5 @@ public abstract class Vehicle implements ITractor {
 
 	public void repaint() {
 		// TODO Auto-generated method stub
-		
 	}
 }
