@@ -13,7 +13,6 @@ import java.awt.List;
 import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.security.SecureRandom;
-import java.util.Random;
 import java.awt.event.ActionEvent;
 
 public class FormPark {
@@ -25,14 +24,20 @@ public class FormPark {
 	private JFrame frame;
 	private JTextField textFieldIndex;
 	private tractorPanel panelPark;
-	private JButton btnParkTractor;
-	private JButton btnParkWorkTractor;
 	private JButton btnTake;
 	private TakePanel panelTake;
+	private JButton btnNewTractor;
 
 	/**
 	 * Launch the application.
 	 */
+	class Delegate extends DelegateTractor {
+		@Override
+		public void add(ITractor tractor) {
+			panelPark.AddTrac(tractor);
+			panelPark.repaint();
+		}
+	}
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -56,37 +61,6 @@ public class FormPark {
 		frame.setBounds(100, 100, 1130, 640);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
-		btnParkTractor = new JButton("Tractor");
-		btnParkTractor.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Color newColor = JColorChooser.showDialog(frame, "Цвет трактора", Color.blue);
-				if (newColor != null) {
-					tractor = new tractor(100, 250, newColor);
-					workTractor = new workTractor(100,100,newColor,Color.black,true,true,true);
-					panelPark.AddTrac(tractor);					
-					panelPark.repaint();
-				}
-			}
-		});
-		btnParkTractor.setBounds(901, 27, 166, 55);
-		frame.getContentPane().add(btnParkTractor);
-
-		btnParkWorkTractor = new JButton("Work Tractor");
-		btnParkWorkTractor.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Color mainColor = JColorChooser.showDialog(frame, "Основной цвет трактора", Color.blue);
-				if (mainColor != null) {
-					Color extrColor = JColorChooser.showDialog(frame, "Дополнительный цвет трактора", Color.blue);
-					if (extrColor != null) {
-						tractor = new workTractor(100,100,mainColor,extrColor,true,true,true);
-						panelPark.AddTrac(tractor, wheel);
-						panelPark.repaint();
-					}					
-				}
-			}
-		});
-		btnParkWorkTractor.setBounds(905, 93, 162, 55);
-		frame.getContentPane().add(btnParkWorkTractor);
 		
 		JLabel label = new JLabel("Tractor index");
 		label.setBounds(915, 199, 122, 14);
@@ -140,6 +114,14 @@ public class FormPark {
 			}
 		});
 		frame.getContentPane().add(list);
+		btnNewTractor = new JButton("Park tractor");
+		btnNewTractor.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				FormConfig config = new FormConfig(new Delegate());
+			}
+		});
+		btnNewTractor.setBounds(889, 31, 215, 111);
+		frame.getContentPane().add(btnNewTractor);
 	}
 	public void initializeParkPanel() {
 		panelPark = new tractorPanel();

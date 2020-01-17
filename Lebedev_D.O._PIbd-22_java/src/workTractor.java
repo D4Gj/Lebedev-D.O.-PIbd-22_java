@@ -43,7 +43,7 @@ public class workTractor extends tractor {
 	}
 
 	private AmountWheels amWheel;
-
+	
 	private IWheel wheels;
 
 	public AmountWheels getWheel() {
@@ -54,8 +54,8 @@ public class workTractor extends tractor {
 		this.amWheel = wheel;
 	}
 
-	public workTractor(int maxSpeed, float weight, Color mainColor, Color extrColor, boolean rearLadle,
-			boolean frontLadle, boolean pipe) {
+	public workTractor(int maxSpeed, float weight, Color mainColor, Color extrColor,
+			boolean rearLadle, boolean frontLadle, boolean pipe) {
 		super(maxSpeed, weight, mainColor);
 		this.setExtrColor(extrColor);
 		this.setPipe(pipe);
@@ -93,6 +93,7 @@ public class workTractor extends tractor {
 			g.drawLine(_startPosX + 84, _startPosY + 50, _startPosX + 84, _startPosY + 40);
 		}
 		if (RearLadle) {
+
 			g.setColor(ExtrColor);
 			for (int i = 0; i < 10; ++i) {
 				g.drawLine(_startPosX + 16, _startPosY + 33 + i, _startPosX + 5 + i / 2, _startPosY + 5 - i / 2);

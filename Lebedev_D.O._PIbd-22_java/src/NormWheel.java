@@ -78,7 +78,6 @@ public class NormWheel implements IWheel {
 	public void SetPos(int x, int y) {
 		this._startPosX=x;
 		this._startPosY=y;
-		
 	}
 
 	@Override

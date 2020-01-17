@@ -76,7 +76,6 @@ public class tractor extends Vehicle {
 	public void DrawCar(Graphics g) {
 		g.setColor(Color.black);
 		g.drawRect(0, 0, 599, 399);
-		
 		// ������ �������� �������� �����
 		// ������� ��������
 		g.setColor(Color.black);
@@ -120,5 +119,9 @@ public class tractor extends Vehicle {
 	public int _startPosY() {
 		// TODO Auto-generated method stub
 		return _startPosY;
+	}
+  
+	public void setWheels(IWheel wheels) {
+		wheel = wheels;
 	}
 }

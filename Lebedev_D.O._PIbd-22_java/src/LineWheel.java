@@ -21,7 +21,7 @@ public class LineWheel implements IWheel {
 			wheel = AmountWheels.four;
 			break;
 		}
-	}
+	}	
 	
 	@Override
 	public void SetPos(int x, int y) {

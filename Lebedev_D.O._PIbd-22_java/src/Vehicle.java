@@ -9,9 +9,10 @@ public abstract class Vehicle implements ITractor {
      protected int _pictureHeight;
      public int MaxSpeed;
      public float Weight;
-     public Color MainColor;
-     
- 	public int getMaxSpeed() {
+
+     public Color MainColor;     
+
+  public int getMaxSpeed() {
  		return MaxSpeed;
  	}
 
@@ -42,7 +43,6 @@ public abstract class Vehicle implements ITractor {
 	public void set_pictureHeight(int _pictureHeight) {
 		this._pictureHeight = _pictureHeight;
 	}
-	
 
 	public int get_startPosX() {
 		return _startPosX;
@@ -60,7 +60,7 @@ public abstract class Vehicle implements ITractor {
 		this._startPosY = _startPosY;
 	}
      
-     public void SetPosition(int x,int y,int width,int height) {
+    public void SetPosition(int x,int y,int width,int height) {
  		set_startPosX(x);
  		set_startPosY(y);
  		set_pictureHeight(height);
