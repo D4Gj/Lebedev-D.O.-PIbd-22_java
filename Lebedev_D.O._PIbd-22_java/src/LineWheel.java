@@ -2,8 +2,33 @@ import java.awt.Color;
 import java.awt.Graphics;
 
 public class LineWheel implements IWheel {
+	private int _startPosX,_startPosY;
+	private AmountWheels wheel;
+	
+	public  LineWheel(int a) {
+		switch(a) {
+		case 4:
+			wheel = AmountWheels.four;
+			break;
+		case 5:
+			wheel = AmountWheels.five;
+			break;
+		case 6:
+			wheel = AmountWheels.six;
+			break;
+		default:
+			wheel = AmountWheels.four;
+			break;
+		}
+	}
+	
 	@Override
-	public void DrawCar(AmountWheels wheel, Graphics g, Color color, int _startPosX, int _startPosY) {
+	public void SetPos(int x, int y) {
+		this._startPosX=x;
+		this._startPosY=y;
+	}
+	@Override
+	public void PrintParkWheel(Graphics g, Color color, int _startPosX, int _startPosY) {
 		g.setColor(color);
 		switch (wheel) {
 		case four:
@@ -56,7 +81,20 @@ public class LineWheel implements IWheel {
 			g.drawLine(_startPosX+46, _startPosY+59, _startPosX+49, _startPosY + 52);
 			g.drawLine(_startPosX+49, _startPosY + 52, _startPosX+52, _startPosY + 59);
 			g.drawLine(_startPosX+52, _startPosY + 59, _startPosX+46, _startPosY+59);
-			break;
+
+			break;	
 		}
+	}
+
+	@Override
+	public int getPosX() {
+		// TODO Auto-generated method stub
+		return _startPosX;
+	}
+
+	@Override
+	public int getPosY() {
+		// TODO Auto-generated method stub
+		return _startPosY;
 	}
 }

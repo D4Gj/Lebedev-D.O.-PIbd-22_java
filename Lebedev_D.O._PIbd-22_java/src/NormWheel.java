@@ -2,9 +2,28 @@ import java.awt.Color;
 import java.awt.Graphics;
 
 public class NormWheel implements IWheel {
+	private int _startPosX,_startPosY;
+	private AmountWheels wheel;
+	
+	public NormWheel(int a) {
+		switch(a) {
+		case 4:
+			wheel = AmountWheels.four;
+			break;
+		case 5:
+			wheel = AmountWheels.five;
+			break;
+		case 6:
+			wheel = AmountWheels.six;
+			break;
+		default:
+			wheel = AmountWheels.four;
+			break;
+		}
+	}
 
-	@Override
-	public void DrawCar(AmountWheels wheel, Graphics g, Color color, int _startPosX, int _startPosY) {
+	public void PrintParkWheel(Graphics g, Color color, int _startPosX, int _startPosY) {
+		// TODO Auto-generated method stub
 		g.setColor(color);
 		switch (wheel) {
 		case four:
@@ -53,5 +72,24 @@ public class NormWheel implements IWheel {
 			g.drawOval(_startPosX + 45, _startPosY + 50, 10, 10);
 			break;
 		}
+	}
+
+	@Override
+	public void SetPos(int x, int y) {
+		this._startPosX=x;
+		this._startPosY=y;
+		
+	}
+
+	@Override
+	public int getPosX() {
+		// TODO Auto-generated method stub
+		return _startPosX;
+	}
+
+	@Override
+	public int getPosY() {
+		// TODO Auto-generated method stub
+		return _startPosY;
 	}
 }
