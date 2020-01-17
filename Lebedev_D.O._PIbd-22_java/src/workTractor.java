@@ -120,7 +120,6 @@ public class workTractor extends tractor {
 			g.drawLine(_startPosX + 4, _startPosY + 1, _startPosX + 4, _startPosY + 35);
 			g.drawLine(_startPosX + 7, _startPosY + 1, _startPosX + 7, _startPosY + 35);
 		}
-
 		if (Pipe) {
 			g.setColor(Color.black);
 			g.drawArc(_startPosX + 55, _startPosY + 27, 5, 5, 0, 130);
