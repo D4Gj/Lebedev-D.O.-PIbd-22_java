@@ -59,7 +59,7 @@ public abstract class Vehicle implements ITractor {
 	public void set_startPosY(int _startPosY) {
 		this._startPosY = _startPosY;
 	}
-     
+  
      public void SetPosition(int x,int y,int width,int height) {
  		set_startPosX(x);
  		set_startPosY(y);
