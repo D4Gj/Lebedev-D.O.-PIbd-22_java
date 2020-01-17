@@ -1,4 +1,3 @@
-
 import java.awt.Color;
 import java.awt.Graphics;
 import java.util.Random;
@@ -96,7 +95,7 @@ public class tractor extends Vehicle {
             //������ ����
 		g.setColor(Color.red);
 		g.fillOval(_startPosX + 12, _startPosY + 31, 9, 9);
-           //�����
+            //�����
 		g.setColor(MainColor);
 		g.fillRect(_startPosX + 16, _startPosY + 1, 24, 44);
 		g.fillRect(_startPosX + 16, _startPosY + 26, 64, 19);

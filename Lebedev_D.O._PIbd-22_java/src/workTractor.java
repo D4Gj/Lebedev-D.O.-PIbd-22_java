@@ -1,3 +1,4 @@
+
 import java.awt.Color;
 import java.awt.Graphics;
 import java.util.Random;
@@ -42,7 +43,7 @@ public class workTractor extends tractor {
 	}
 
 	private AmountWheels amWheel;
-	
+
 	private IWheel wheels;
 
 	public AmountWheels getWheel() {
@@ -53,8 +54,8 @@ public class workTractor extends tractor {
 		this.amWheel = wheel;
 	}
 
-	public workTractor(int maxSpeed, float weight, Color mainColor, Color extrColor,
-			boolean rearLadle, boolean frontLadle, boolean pipe) {
+	public workTractor(int maxSpeed, float weight, Color mainColor, Color extrColor, boolean rearLadle,
+			boolean frontLadle, boolean pipe) {
 		super(maxSpeed, weight, mainColor);
 		this.setExtrColor(extrColor);
 		this.setPipe(pipe);
@@ -78,7 +79,7 @@ public class workTractor extends tractor {
 			}
 			// okraska kovsha
 			g.fillOval(_startPosX + 83, _startPosY + 2, 10, 10);
-			// îęŕíňîâęŕ ęîâřčęŕ
+			// ��������� �������
 			g.setColor(Color.BLACK);
 			g.drawLine(_startPosX + 60, _startPosY + 30, _startPosX + 85, _startPosY + 5);
 			g.drawLine(_startPosX + 70, _startPosY + 30, _startPosX + 90, _startPosY + 10);
@@ -108,7 +109,7 @@ public class workTractor extends tractor {
 			g.drawLine(_startPosX, _startPosY + 30, _startPosX, _startPosY + 40);
 			g.drawLine(_startPosX, _startPosY + 40, _startPosX + 7, _startPosY + 37);
 			g.drawLine(_startPosX + 7, _startPosY + 37, _startPosX + 7, _startPosY + 35);
-			// ďŕëęč
+			// �����
 			g.drawLine(_startPosX + 16, _startPosY + 40, _startPosX + 5, _startPosY + 5);
 			g.drawLine(_startPosX + 16, _startPosY + 30, _startPosX + 8, _startPosY + 1);
 			g.drawOval(_startPosX + 3, _startPosY + 1, 6, 6);

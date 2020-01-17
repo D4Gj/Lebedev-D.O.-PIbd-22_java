@@ -1,16 +1,46 @@
 import java.awt.Graphics;
+import java.util.LinkedList;
+import java.util.Queue;
 
 import javax.swing.JPanel;
 
-public class tractorPanel extends JPanel {
-	private Park<ITractor, IWheel> park;
 
-	public tractorPanel(Park<ITractor, IWheel> park) {
-		this.park = park;
+public class tractorPanel extends JPanel {
+	  MultiLevelParking park = new MultiLevelParking(15, 1000, 700);
+	  Queue<ITractor> queue = new LinkedList<ITractor>();
+	  private final int countLevel = 5;
+	  private int currentLevel = 0;
+
+	public tractorPanel() {
+		this.park = new MultiLevelParking(20, 1000, 700);
 	}
 
 	public void paint(Graphics g) {
 		super.paint(g);
-		park.Draw(g);
+		park.level(currentLevel).Draw(g);
+	}
+	public void setLevel(int index) {
+		if (index >= 0 && index < countLevel) {
+			currentLevel = index;
+		}
+	}
+	public int AddTrac(ITractor tractor){
+		return park.level(currentLevel).AddTrac(tractor);
+	}
+	public int AddTrac(ITractor tractor,IWheel wheel){
+		return park.level(currentLevel).AddTrac(tractor,wheel);
+	}
+	public ITractor TakeTractor(int index) {
+		ITractor tractor = park.getTrac(currentLevel, index);
+		if(tractor!=null)
+			queue.add(tractor);
+		return park.level(currentLevel).removeTrac(index);
+	}
+	public boolean More(ITractor tractor) {
+		return park.level(currentLevel).More(tractor);
+	}
+	
+	public boolean Less(ITractor tractor) {
+		return park.level(currentLevel).Less(tractor);
 	}
 }

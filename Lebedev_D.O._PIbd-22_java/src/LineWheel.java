@@ -1,3 +1,4 @@
+
 import java.awt.Color;
 import java.awt.Graphics;
 
@@ -81,7 +82,6 @@ public class LineWheel implements IWheel {
 			g.drawLine(_startPosX+46, _startPosY+59, _startPosX+49, _startPosY + 52);
 			g.drawLine(_startPosX+49, _startPosY + 52, _startPosX+52, _startPosY + 59);
 			g.drawLine(_startPosX+52, _startPosY + 59, _startPosX+46, _startPosY+59);
-
 			break;	
 		}
 	}
@@ -98,3 +98,4 @@ public class LineWheel implements IWheel {
 		return _startPosY;
 	}
 }
+

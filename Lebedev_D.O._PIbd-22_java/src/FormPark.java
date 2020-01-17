@@ -7,6 +7,9 @@ import javax.swing.JColorChooser;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
+
+import java.util.ArrayList;
+import java.awt.List;
 import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.security.SecureRandom;
@@ -17,7 +20,6 @@ public class FormPark {
 
 	private final int panelParkWidth = 870;
 	private final int panelParkHeight = 600;
-	private Park<ITractor, IWheel> park;
 	private ITractor tractor,workTractor;
 	private IWheel wheel;
 	private JFrame frame;
@@ -54,18 +56,14 @@ public class FormPark {
 		frame.setBounds(100, 100, 1130, 640);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
-
-		park = new Park<ITractor, IWheel>(20, panelParkWidth, panelParkHeight);
-
-		btnParkTractor = new JButton(
-				"Tractor");
+		btnParkTractor = new JButton("Tractor");
 		btnParkTractor.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Color newColor = JColorChooser.showDialog(frame, "Цвет трактора", Color.blue);
 				if (newColor != null) {
 					tractor = new tractor(100, 250, newColor);
 					workTractor = new workTractor(100,100,newColor,Color.black,true,true,true);
-					park.AddTrac(tractor);					
+					panelPark.AddTrac(tractor);					
 					panelPark.repaint();
 				}
 			}
@@ -81,7 +79,7 @@ public class FormPark {
 					Color extrColor = JColorChooser.showDialog(frame, "Дополнительный цвет трактора", Color.blue);
 					if (extrColor != null) {
 						tractor = new workTractor(100,100,mainColor,extrColor,true,true,true);
-						park.AddTrac(tractor, wheel);
+						panelPark.AddTrac(tractor, wheel);
 						panelPark.repaint();
 					}					
 				}
@@ -110,20 +108,15 @@ public class FormPark {
 		btnTake.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(textFieldIndex.getText() != "") {
-					tractor = park.removeTrac(Integer.parseInt(textFieldIndex.getText()));
+					tractor = panelPark.TakeTractor(Integer.parseInt(textFieldIndex.getText()));
 					if (tractor != null) {
 						panelTake.clear();
-						wheel = park.removeWheel(Integer.parseInt(textFieldIndex.getText()));
-						if (park != null) {
-							panelTake.drawTractor(tractor, wheel);
-						} else {
-							panelTake.drawTractor(tractor);
-						}
+						panelTake.drawTractor(tractor, wheel);
 						panelTake.tractor.SetPosition(100, 100, panelParkWidth, panelParkHeight);
 						panelPark.repaint();
 						panelTake.repaint();
-						LabelMore.setText("FuncMore: "+park.More(tractor));
-						LabelLess.setText("FuncLess: "+park.Less(tractor));
+						LabelMore.setText("FuncMore: "+panelPark.More(tractor));
+						LabelLess.setText("FuncLess: "+panelPark.Less(tractor));
 					}
 				}
 			}
@@ -135,9 +128,21 @@ public class FormPark {
 		panelTake.setBorder(new LineBorder(new Color(0, 0, 0)));
 		panelTake.setBounds(889, 288, 215, 186);
 		frame.getContentPane().add(panelTake);
+		List list = new List();
+		for (int i = 0; i < 5; i++) {
+			list.add("Level " + i);
+		}
+		list.setBounds(730, 27, 154, 115);
+		list.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				panelPark.setLevel(list.getSelectedIndex());
+				panelPark.repaint();
+			}
+		});
+		frame.getContentPane().add(list);
 	}
 	public void initializeParkPanel() {
-		panelPark = new tractorPanel(park);
+		panelPark = new tractorPanel();
 		panelPark.setBorder(new LineBorder(new Color(0, 0, 0)));
 		panelPark.setBounds(10, 11, panelParkHeight, panelParkHeight);
 		frame.getContentPane().add(panelPark);
