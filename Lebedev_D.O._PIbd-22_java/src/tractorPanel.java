@@ -53,7 +53,7 @@ public class tractorPanel extends JPanel {
 		}
 	}
 
-	public void LoadData(String absolutePath) {
+	public void LoadData(String absolutePath) throws ParkOccupiedPlaceException {
 		try {
 			park.LoadData(absolutePath);
 		} catch (IOException e) {
@@ -61,7 +61,7 @@ public class tractorPanel extends JPanel {
 		}
 	}
 
-	public void LoadCurrentLevel(String absolutePath) {
+	public void LoadCurrentLevel(String absolutePath) throws ParkOccupiedPlaceException {
 		try {
 			park.LoadLevel(absolutePath);
 		} catch (IOException e) {
