@@ -31,10 +31,14 @@ public class MultiLevelParking {
         return null;
     }
     
-    public ITractor getTrac(int parkIndex, int transportIndex) {
-    	return parkStages.get(parkIndex).getTrac(transportIndex);
+    public ITractor getTrac(int parkIndex, int transportIndex) throws ParkNotFoundException {
+    	if (parkIndex < 0 || parkIndex >= parkStages.size())
+			return null;
+		if (transportIndex < 0 || transportIndex > countPlaces)
+			return null;
+		return parkStages.get(parkIndex).getTrac(transportIndex);
     }
-
+    
 	public boolean SaveLevel(String name,int lvl) throws IOException {
 		try {
 			if (lvl < parkStages.size() && lvl > 0) {
@@ -103,11 +107,10 @@ public class MultiLevelParking {
         return true;
 	}
 
-	public boolean LoadData(String absolutePath) throws IOException {
-		FileReader fr = new FileReader(absolutePath);
-        String bufferTextFromFile = "";
+	public boolean LoadData(String absolutePath) throws IOException,ParkOccupiedPlaceException {
+		String bufferTextFromFile = "";
         int counter = -1;
-        
+		FileReader fr = new FileReader(absolutePath);
         int c;
         while ((char)(c = fr.read()) != '\n') {
         	bufferTextFromFile += (char)c;
@@ -150,12 +153,10 @@ public class MultiLevelParking {
             	bufferTextFromFile += (char)c;
             }
         }
-        
         return true;
 	}
 
-	public boolean LoadLevel(String absolutePath) throws IOException {
-		try {
+	public boolean LoadLevel(String absolutePath) throws IOException,ParkOccupiedPlaceException {
 		FileReader fr = new FileReader(absolutePath);
         String bufferTextFromFile = "";
         int lvl = 0;
@@ -193,7 +194,6 @@ public class MultiLevelParking {
         	       	else if(bufferTextFromFile.split(":")[1].equals("workTractor")) {
         	       		tractor = new workTractor(bufferTextFromFile.split(":")[2]);
         	       	}
-        	       	
         	       	parkStages.get(lvl).setTractor(Integer.parseInt(bufferTextFromFile.split(":")[0]), tractor);
                 }
                 
@@ -202,10 +202,6 @@ public class MultiLevelParking {
             	bufferTextFromFile += (char)c;
             }
           } 
-        }catch (Exception e) {
-			e.printStackTrace();
-			return false;
-		}
         return true;
 	}
 }

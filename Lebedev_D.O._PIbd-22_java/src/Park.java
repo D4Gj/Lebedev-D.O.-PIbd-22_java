@@ -45,59 +45,56 @@ public class Park<T extends ITractor, U extends IWheel> {
 		return places.get(index) == null;
 	}
 
-	public int AddTrac(T tractor) {
-		if (places.size() == maxPlaces)
-        {
-            return -1;
-        }
+	public int AddTrac(T tractor) throws ParkOverflowException {
+		if (places.size() == maxPlaces) {
+			throw new ParkOverflowException();
+		}
 
-        for (int i = 0; i < maxPlaces; i++)
-        {
-            if (CheckFreePlace(i))
-            {
-                places.put(i, tractor);
-                places.get(i).SetPosition(5 + i / 5 * placeSizeWidth + 5, i % 5 * placeSizeHeight + 15, 
-                		pictureWidth, pictureHeight);
-                return i;
-            }
-        }
-        return -1;
-    }
-	
-
-	public int AddTrac(T tractor, U wheel) {
 		for (int i = 0; i < maxPlaces; i++) {
 			if (CheckFreePlace(i)) {
-				places.put(i,tractor);
-				places.get(i).SetPosition(20 + i / 5 * placeSizeWidth, i % 5 * placeSizeHeight + 50, pictureWidth,
+				places.put(i, tractor);
+				places.get(i).SetPosition(5 + i / 5 * placeSizeWidth + 5, i % 5 * placeSizeHeight + 15, pictureWidth,
 						pictureHeight);
-				placesWheels.put(i,wheel);
 				return i;
 			}
 		}
 		return -1;
 	}
-	
-	public boolean Less(T tractor) {
-		T trac=null;
+
+	public int AddTrac(T tractor, U wheel) throws ParkOverflowException {
 		for (int i = 0; i < maxPlaces; i++) {
-			if(places.get(i)!=null)
-				trac=places.get(i);
+			if (CheckFreePlace(i)) {
+				places.put(i, tractor);
+				places.get(i).SetPosition(20 + i / 5 * placeSizeWidth, i % 5 * placeSizeHeight + 50, pictureWidth,
+						pictureHeight);
+				placesWheels.put(i, wheel);
+				return i;
+			}
 		}
-		if(trac!= null && trac.hashCode()>tractor.hashCode())
+		return -1;
+	}
+
+	public boolean Less(T tractor) {
+		T trac = null;
+		for (int i = 0; i < maxPlaces; i++) {
+			if (places.get(i) != null)
+				trac = places.get(i);
+		}
+		if (trac != null && trac.hashCode() > tractor.hashCode())
 			return true;
-		else 
+		else
 			return false;
 	}
+
 	public boolean More(T tractor) {
-		T trac=null;
+		T trac = null;
 		for (int i = 0; i < maxPlaces; i++) {
-			if(places.get(i)!=null)
-				trac=places.get(i);
+			if (places.get(i) != null)
+				trac = places.get(i);
 		}
-		if(trac == null || trac.hashCode()<tractor.hashCode())
+		if (trac == null || trac.hashCode() < tractor.hashCode())
 			return true;
-		else 
+		else
 			return false;
 	}
 
@@ -112,29 +109,28 @@ public class Park<T extends ITractor, U extends IWheel> {
 			}
 		}
 	}
-	public T removeTrac(int index)
-	{
-		if(index<0|| index>maxPlaces)
+
+	public T removeTrac(int index) throws ParkNotFoundException {
+		if (index < 0 || index > maxPlaces)
 			return null;
-		if(!CheckFreePlace(index)) {
+		if (!CheckFreePlace(index)) {
 			T tractor = places.get(index);
-			places.put(index,null);
+			places.put(index, null);
 			return tractor;
 		}
-		return null;
+		throw new ParkNotFoundException(index);
 	}
+
 	public U removeWheel(int index) {
-		if (index < 0 || index > maxPlaces)
-        {
-            return null;
-        }
-        if (placesWheels.get(index) != null)
-        {
-            U wheel = placesWheels.get(index);
-            placesWheels.put(index,null);
-            return wheel;
-        }
-        return null;
+		if (index < 0 || index > maxPlaces) {
+			return null;
+		}
+		if (placesWheels.get(index) != null) {
+			U wheel = placesWheels.get(index);
+			placesWheels.put(index, null);
+			return wheel;
+		}
+		return null;
 	}
 
 	private void DrawMarking(Graphics g) {
@@ -146,8 +142,15 @@ public class Park<T extends ITractor, U extends IWheel> {
 			g.drawLine(i * placeSizeWidth, 0, i * placeSizeWidth, 400);
 		}
 	}
-	public void setTractor(int index,T tractor) {
-		places.put(index, tractor);
-		places.get(index).SetPosition(5 + index / 5 * placeSizeWidth + 5, index % 5 * placeSizeHeight + 15, pictureWidth, pictureHeight);
+
+	public void setTractor(int index, T tractor) throws ParkOccupiedPlaceException {
+		if (CheckFreePlace(index)) {
+			places.put(index, tractor);
+			places.get(index).SetPosition(5 + index / 5 * placeSizeWidth + 5, index % 5 * placeSizeHeight + 15,
+					pictureWidth, pictureHeight);
+			return;
+		} else {
+			throw new ParkOccupiedPlaceException(index);
+		}
 	}
 }
